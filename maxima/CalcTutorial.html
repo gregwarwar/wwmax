@@ -1,0 +1,3163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>CalcTutorial</title><meta name="generator" content="wxMaxima"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><style type="text/css">
+body {
+  font-family: Courier New;
+  background-color: rgb(255,255,255);
+}
+.input {
+  color: rgb(49,79,79);
+}
+.comment {
+  color: rgb(0,0,0);
+  background-color: rgb(191,216,216);
+  padding: 2mm;
+}
+.image {
+  color: rgb(0,0,0);
+  padding: 2mm;
+}
+.section {
+  color: rgb(0,0,0);
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.5em;
+  padding: 2mm;
+}
+.subsect {
+  color: rgb(0,0,0);
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 2mm;
+}
+.title {
+  color: rgb(0,0,0);
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 2em;
+  padding: 2mm;
+}
+.prompt {
+  color: rgb(255,0,0);
+}
+table {
+  border: 0px;
+}
+td {
+  vertical-align: top;
+  padding: 1mm;
+}
+  </style></head>
+<body><h1 style="text-align: justify;"><a class="mozTocH1" name="mozTocId159898"></a>
+A wxMaxima Guide for Calculus Students</h1><br><ul class="readonly" id="mozToc"><!--mozToc h1 1 h2 2 h3 3--><li><a href="#mozTocId159898">
+A wxMaxima Guide for Calculus Students</a><ul><li><a href="#mozTocId378511">
+ 1 Scientific Calculator
+</a></li><li><a href="#mozTocId836071">
+ 2 Finding Limits with Maxima
+</a><ul><li><a href="#mozTocId513081">
+  2.1 Plotting Despite Asymptotes
+</a></li><li><a href="#mozTocId220460">
+  2.2 The Limit of the Difference Quotient
+</a></li></ul></li><li><a href="#mozTocId81809">
+ 3 Differentiation Rules
+</a><ul><li><a href="#mozTocId226822">
+  3.1 Extracting and Manipulating Results
+</a></li><li><a href="#mozTocId553074">
+  3.2 Derivatives of Trigonometric Functions
+</a></li><li><a href="#mozTocId652884">
+  3.3 The Chain Rule
+</a></li><li><a href="#mozTocId506650">
+  3.4 Implicit Differentiation; Higher Derivatives
+</a></li><li><a href="#mozTocId482446">
+  3.5 Related Rates
+</a></li><li><a href="#mozTocId707780">
+  3.6 Linear Approximations and Differentials
+</a></li><li><a href="#mozTocId454839">
+  3.8 Optimization: Finding Maximum or Minimum Values of Functions Subject to a Constraint&nbsp;</a></li><li><a href="#mozTocId924379">
+  3.9 Optimization with More than One Variable
+</a></li></ul></li><li><a href="#mozTocId24372">
+ 4 Integration
+</a><ul><li><a href="#mozTocId766760">
+  4.1 The Fundamental Theorem of Calculus
+</a></li><li><a href="#mozTocId823760">
+  4.2 The Commands desolve and ode2
+</a></li><li><a href="#mozTocId863918">
+  4.3 Intersections and Areas Between Curves
+</a></li><li><a href="#mozTocId23844">
+  4.4 Volumes by Slicing: Using Trigsimp
+</a></li></ul></li><li><a href="#mozTocId383537">
+ 5 Some Numerical Methods in Maxima
+</a><ul><li><a href="#mozTocId184858">
+  5.1 Solving Equations
+</a></li><li><a href="#mozTocId712540">
+  5.2 Recursive Functions
+</a></li><li><a href="#mozTocId912826">
+  5.3 Numerical Integration
+</a></li><li><a href="#mozTocId577290">
+  5.4 Numerical Solution of ODEs
+</a></li></ul></li></ul></li></ul><div style="text-align: justify;">
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+This guide follows&nbsp;<span style="font-style: italic;">A Maxima Guide for Calculus Students</span>
+very closely. &nbsp;Details are at the end of this document. I thank
+Professor Moses Glasner for allowing me to use the material that he had
+developed. I am responsible for errors or shortcomings where the
+material below deviates from Professor Glasner's guide. Please contact
+me (wmixon at berry dot edu) with corrections or suggestions for
+improvement.</span><br>
+
+
+
+
+<!-- Section cell -->
+
+
+<br></div><h2 style="text-align: justify;"><a class="mozTocH2" name="mozTocId378511"></a>
+ 1 Scientific Calculator
+</h2><div style="text-align: justify;">
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+By default <span style="font-style: italic;">Maxima</span> comes with its own graphical user interface, <span style="font-style: italic;">Xmaxima</span>. People familiar with <span style="font-style: italic;">Emacs</span> may be </span><span style="font-family: Helvetica,Arial,sans-serif;">more&nbsp;comfortable using <span style="font-style: italic;">Maxima</span> under the <span style="font-style: italic;">Emacs</span> </span><span style="font-family: monospace;">maxima</span><span style="font-family: Helvetica,Arial,sans-serif;">-mode, which  provides a powerful environment </span><span style="font-family: Helvetica,Arial,sans-serif;">for combining&nbsp;computations with the LaTeX composition of a document. For very brief usage not requiring </span><span style="font-family: Helvetica,Arial,sans-serif;">extensive interaction,&nbsp;<span style="font-style: italic;">Maxima</span> can be run from a console, such as <span style="font-style: italic;">Xterm</span> under Linux, or DOS prompt under Windows.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">
+Maxima</span> can be run in two other more elaborate environments: <span style="font-style: italic;">TeXmacs</span> and <span style="font-style: italic;">wxMaxima</span>. The former gives </span><span style="font-family: Helvetica,Arial,sans-serif;">a typeset&nbsp;appearance to Maxima's output and provides automatic generation of LaTeX source whereas the latter </span><span style="font-family: Helvetica,Arial,sans-serif;">provides a&nbsp;menu driven environment for using <span style="font-style: italic;">Maxima</span>. This tutorial employs<span style="font-style: italic;"> wxMaxima</span>, which can be used to&nbsp; </span><span style="font-family: Helvetica,Arial,sans-serif;">export both html and&nbsp;LaTeX files (though the exported files will likely require editing before &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">being ready for publication).</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+We assume that you have loaded <span style="font-style: italic;">Maxima</span> onto your computer and can run it from <span style="font-style: italic;">wxMaxima</span>. Be aware that </span><span style="font-family: Helvetica,Arial,sans-serif;">the<span style="font-family: Courier New,Courier,monospace;"> F1</span> key or the&nbsp;</span><span style="font-family: monospace;">Help</span><span style="font-family: Helvetica,Arial,sans-serif;"> menu can be used to open the entire <span style="font-style: italic;">Maxima</span> manual. </span><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">Maxima</span> also provides help from the command line in response&nbsp;to the </span><span style="font-family: Helvetica,Arial,sans-serif;">commands </span><span style="font-family: monospace;">describe(something)</span><span style="font-family: Helvetica,Arial,sans-serif;"> or </span><span style="font-family: monospace;">example(something</span><span style="font-family: Helvetica,Arial,sans-serif;">). <span style="font-style: italic;">Maxima</span> may ask additional questions before responding to </span><span style="font-family: Helvetica,Arial,sans-serif;">&nbsp;these help requests and the response should be ended with a semicolon </span><span style="font-family: monospace;">;</span><span style="font-family: Helvetica,Arial,sans-serif;"> and then pressing the ENTER key. &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">If&nbsp;you are not comfortable with <span style="font-style: italic;">wxMaxima</span>, see the <span style="font-family: Courier New,Courier,monospace;">Help</span> option at <a href="wxmaxima.sourceforge.net/" target="_blank">wxmaxima.sourceforge.net</a><a href="wxmaxima.sourceforge.net/" target="_blank">/</a>. In particular, </span><span style="font-family: Helvetica,Arial,sans-serif;">work through "10&nbsp;Minute (wx)Maxima tutorial" (expect to spend more than 10 minutes on this).</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+When <span style="font-style: italic;">Maxima</span> is ready to process an instruction it displays a </span><span style="font-family: monospace;">%i</span><span style="font-family: Helvetica,Arial,sans-serif;"> followed by an integer on the screen: for </span><span style="font-family: Helvetica,Arial,sans-serif;">example, (</span><span style="font-family: monospace;">%i1</span><span style="font-family: Helvetica,Arial,sans-serif;">). The instruction given to <span style="font-style: italic;">Maxima</span> is typed in at this point. It must end with a semicolon or a </span><span style="font-family: Helvetica,Arial,sans-serif;">dollar sign followed by a press on the&nbsp;ENTER key. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">
+Maxima</span> is case sensitive. The cell below contains three <span style="font-style: italic;">Maxima</span> commands, each ending with a semicolon. &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">The first command yields the expected result. In the other two an improper capitalization precludes computation. </span><span style="font-family: Helvetica,Arial,sans-serif;">The second command contains an unknown command </span><span style="font-family: monospace;">Sin</span><span style="font-family: Helvetica,Arial,sans-serif;">. The third command contains the command to &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">return the sine of an unknown quantity (</span><span style="font-family: monospace;">%Pi/2</span><span style="font-family: Helvetica,Arial,sans-serif;">). When <span style="font-style: italic;">Maxima</span> cannot interpret and command, it simply repeats &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">that command as output.<br><br>Note
+that </span><span style="font-family: monospace;">%pi</span><span style="font-family: Helvetica,Arial,sans-serif;"> is Maxima's way of rendering the transcendental number with
+that name. Entering </span><span style="font-family: monospace;">pi</span><span style="font-family: Helvetica,Arial,sans-serif;"> in <span style="font-style: italic;">wxMaxima</span> results in the Greek letter of that
+name. Enter the command </span><span style="font-family: monospace;">sin(pi/2);</span><span style="font-family: Helvetica,Arial,sans-serif;"> and confirm that <span style="font-style: italic;">Maxima</span> does not evaluate it.<br></span>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i1)
+  </span></td>
+  <td><span class="input">
+sin(%pi/2); Sin(%pi/2); sin(%Pi/2);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_0.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Ending a command with a dollar sign results in the command being carried out without printing the results. In the </span><span style="font-family: Helvetica,Arial,sans-serif;">cell below, the values 1 and 2 are bound to the names </span><span style="font-family: monospace;">a</span><span style="font-family: Helvetica,Arial,sans-serif;"> and </span><span style="font-family: monospace;">b</span><span style="font-family: Helvetica,Arial,sans-serif;">. Both commands end with the dollar sign so the &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">results are not printed. The third command, which spreads over two lines, ends with a semicolon, so its result is &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">printed. <span style="font-style: italic;">Maxima</span> ignores spaces and line breaks.
+</span><br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i4)
+  </span></td>
+  <td><span class="input">
+a:1$  b:2$ <br>
+a + <br>
+b;
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_1.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>One might interpret the two expressions above as equivalent to </span><span style="font-family: monospace;">a = 1</span><span style="font-family: Helvetica,Arial,sans-serif;"> and</span><span style="font-family: monospace;"> b = 2</span><span style="font-family: Helvetica,Arial,sans-serif;">. <span style="font-style: italic;">Maxima</span> does not. The equal sign </span><span style="font-family: Helvetica,Arial,sans-serif;">is reserved for expressions that are temporarily true, but the statement of equality is not retained indefinitely. </span><span style="font-family: Helvetica,Arial,sans-serif;">Consider the two expressions below.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i7)
+  </span></td>
+  <td><span class="input">
+c = 5;                  c;
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_2.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The equality below is expressed with the equal sign. The solve command
+is applied to the expression, using the </span><span style="font-family: monospace;">%</span><span style="font-family: Helvetica,Arial,sans-serif;"> symbol to refer to the most
+recently generated output. Maxima no longer retains any memory of the
+expression <span style="font-style: italic;">2*x + 1 = 7</span>.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i9)
+  </span></td>
+  <td><span class="input">
+2*x + 1 = 7;   solve(%, x);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_3.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>We can bind
+the expression to a name, such as </span><span style="font-family: monospace;">expr1</span><span style="font-family: Helvetica,Arial,sans-serif;">. and then use </span><span style="font-family: monospace;">expr1</span><span style="font-family: Helvetica,Arial,sans-serif;"> in place of
+the expression itself. The command below binds this expression to a
+name, then binds the solution of the expression to another name, and
+finally evaluates the expression given the solution.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i11)
+  </span></td>
+  <td><span class="input">
+expr1: 2*x + 1 = 7$       solnx: solve(expr1, x);       ev(expr1, solnx);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_4.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br><br>A very
+simple use of <span style="font-style: italic;">Maxima</span> is as an infinite precision scientific calculator.
+To illustrate this use, consider the following, where <span style="font-family: Courier New,Courier,monospace;">bfloat</span> invokes <span style="font-style: italic;">Maxima</span>'s </span><span style="font-family: monospace;">bigfloat</span><span style="font-family: Helvetica,Arial,sans-serif;"> option, and <span style="font-family: Courier New,Courier,monospace;">fpprintprec:60</span> sets the floating point print precision.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i14)
+  </span></td>
+  <td><span class="input">
+fpprec:60$     q : sqrt(2);         1 + q;<br>
+bfloat(q);           bfloat(1+q);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_5.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+When <span style="font-style: italic;">Maxima</span> completes a calculation all labels remain in use until
+either <span style="font-style: italic;">Maxima</span> is instructed to free them or the user quits <span style="font-style: italic;">Maxima</span>. If
+the user is not aware of this when starting a new calculation
+unexpected results can occur. The instruction </span><span style="font-family: monospace;">kill(all)</span><span style="font-family: Helvetica,Arial,sans-serif;"> destroys all
+information, including loaded packages. Freeing labels with this
+instruction may be wasteful if some of the objects currently attached
+or some of the loaded packages will be needed in subsequent
+calculations. The instructions values and functions ask <span style="font-style: italic;">Maxima</span> to
+display all labels currently attached to expressions or functions. The
+the following dialogue indicates a procedure for freeing specific
+labels while keeping the rest intact.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+Note the use of </span><span style="font-family: monospace;">f(x) :=</span><span style="font-family: Helvetica,Arial,sans-serif;"> as a third way to relate an expression to a name. In this case a functional relationship is &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">established.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i19)
+  </span></td>
+  <td><span class="input">
+kill(all);<br>
+values; functions;
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_6.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>In the next cell two values and two functions are defined. One value
+and one function are killed, leaving the value </span><span style="font-family: monospace;">b</span><span style="font-family: Helvetica,Arial,sans-serif;"> and the function </span><span style="font-family: monospace;">g(x)</span><span style="font-family: Helvetica,Arial,sans-serif;">.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i3)
+  </span></td>
+  <td><span class="input">
+a:1$                b:2$             f(x) := x^2$        g(x):=x^3 $   <br>
+kill(a,f); <br>
+values;                 functions;          g(b);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_7.png">
+
+
+
+<!-- Section cell -->
+
+
+<br><h2><a class="mozTocH2" name="mozTocId836071"></a>
+ 2 Finding Limits with Maxima
+</h2>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">Maxima</span> can
+be very helpful in checking limits of functions. Before we consider the
+limits, however, we examine the functional notation more closely. The
+function <span style="font-style: italic;">f(x) = sin(x)/x</span> is specified and then evaluated for four
+values of<span style="font-style: italic;"> x</span>. Note the use of a list of commands and the corresponding
+list of output values.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i11)
+  </span></td>
+  <td><span class="input">
+kill(all)$<br>
+&nbsp;f(x) := sin(x)/(1-x);<br>
+&nbsp;[f(0), f(%pi/2), f(1 + h), f(x + h)];
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_8.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Inspection
+of <span style="font-style: italic;">f(x)</span> indicates that <span style="font-style: italic;">f(0)</span> is not defined. We may wish, however, to
+determine the value toward which <span style="font-style: italic;">f(x)</span> tends as <span style="font-style: italic;">x</span> approaches zero. The
+cell below confirms that <span style="font-style: italic;">f(0)</span> is not defined, and it reports that the
+limit of <span style="font-style: italic;">f(x)</span> as <span style="font-style: italic;">x</span> approaches 0 is "infinity". This is an
+unsatisfactory reply in that this value is <span style="font-style: italic;">Maxima</span>'s way of indicating a
+complex infinity. <span style="font-style: italic;">Maxima</span> indicates a positive infinity with </span><span style="font-family: monospace;">inf</span><span style="font-family: Helvetica,Arial,sans-serif;"> and a
+negative infinity with </span><span style="font-family: monospace;">minf</span><span style="font-family: Helvetica,Arial,sans-serif;">. <span style="font-style: italic;">wxMaxima</span> converts these to the standard
+symbols as we see below.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i3)
+  </span></td>
+  <td><span class="input">
+f(1);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_9.png">
+
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i4)
+  </span></td>
+  <td><span class="input">
+ limit(f(x), x, 1);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_10.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The
+difficulty that results in the imprecise "infinity" response above is
+removed when we tell <span style="font-style: italic;">Maxima</span> whether <span style="font-style: italic;">x</span> approaches 0 from above ("plus")
+or below ("minus").</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i5)
+  </span></td>
+  <td><span class="input">
+limit(f(x), x, 1,  plus);    limit(f(x), x, 1, minus);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_11.png">
+
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH3" name="mozTocId513081"></a>
+  2.1 Plotting Despite Asymptotes
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+Graphing this function presents a challenge, because <span style="font-style: italic;">f(x)</span> grows without limit as x approaches </span><span style="font-family: Helvetica,Arial,sans-serif;">1.  The use of draw's scenario creation and graphing feature below shows how to circumvent &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">this difficulty. The first graph places no limits on the <span style="font-style: italic;">f(x)</span> range, so the values being graphed </span><span style="font-family: Helvetica,Arial,sans-serif;">over the relevant range cannot be discerned.  Forcing </span><span style="font-family: monospace;">draw</span><span style="font-family: Helvetica,Arial,sans-serif;"> to consider only<span style="font-style: italic;"> f(x)</span> values between </span><span style="font-family: Helvetica,Arial,sans-serif;">-1 and 1 allows for the drawing of the graph that we require. The <span style="font-style: italic;">x</span> and <span style="font-style: italic;">y</span> axes are optional.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i7)
+  </span></td>
+  <td><span class="input">
+graph1: gr2d(  explicit(f(x), x, -4*%pi, 4*%pi) )$<br>
+graph2: gr2d( xaxis=true, yaxis = true, yrange= [-1, 1], explicit(f(x), x, -4*%pi, 4*%pi) )$<br>
+wxdraw(   graph1, graph2      );
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_12.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><br>Maxima</span> can deal with functions that involve logical expressions. The
+</span><span style="font-family: monospace;">transpose( matrix( ) )</span><span style="font-family: Helvetica,Arial,sans-serif;"> command is used to generate a table and is not
+pertinent to the analysis.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i10)
+  </span></td>
+  <td><span class="input">
+g(x) := if x &lt; 2 then x^2  else sqrt(x);<br>
+transpose( matrix([g(0), g(2.5), g(4.999), g(5), g(5.0)]) );
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_13.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><br>Maxima</span> can
+also be used as a graphing calculator, and it can calculate more than
+one function. Observe that the two graphs are not plotted over the same
+range. Note the use of string to make the functional expression the key
+entry.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i12)
+  </span></td>
+  <td><span class="input">
+wxdraw2d( yrange = [-2, 5],  key = string(f(x)),  explicit( f(x), x, -5, 10), <br>
+color = black, key = string(g(x)) , explicit(g(x), x, -2, 10)<br>
+&nbsp;&nbsp;)$
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_14.png">
+
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH2" name="mozTocId220460"></a>
+  2.2 The Limit of the Difference Quotient
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+Being able to determine the limit of a difference quotient can be quite helpful. The expression </span><span style="font-family: Helvetica,Arial,sans-serif;">that characterizes the change in <span style="font-style: italic;">f(x)</span> per unit change in<span style="font-style: italic;"> x</span> is defined below (</span><span style="font-family: monospace;">h</span><span style="font-family: Helvetica,Arial,sans-serif;"> is the size of the </span><span style="font-family: Helvetica,Arial,sans-serif;">change in<span style="font-style: italic;"> x</span>). The limit of this expression is determined. It is a quite long expression, but one </span><span style="font-family: Helvetica,Arial,sans-serif;">that can be simplified, as shown.
+&nbsp;The </span><span style="font-family: monospace;">ratsimp</span><span style="font-family: Helvetica,Arial,sans-serif;"> command results in simplification of a rational expression.</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i13)
+  </span></td>
+  <td><span class="input">
+diffratio: (f(x+h) - f(x) )/h;<br>
+dr_limit: limit(diffratio, h, 0);  ratsimp(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_15.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The limit of the difference quotient is the derivative of the function. This equality is confirmed for </span><span style="font-family: Helvetica,Arial,sans-serif;">the example below. The next section discusses the notation for the </span><span style="font-family: monospace;">diff</span><span style="font-family: Helvetica,Arial,sans-serif;"> (derivative) command.
+</span><br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i16)
+  </span></td>
+  <td><span class="input">
+diff(f(x), x); ratsimp(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_16.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The graph below shows the function f(x) and its derivative for <span style="font-style: italic;">x</span> from -10 to 10. </span><span style="font-family: Helvetica,Arial,sans-serif;">In general, care should be taken when graphing <span style="font-style: italic;">f(x)</span> and its derivatives, because </span><span style="font-family: Helvetica,Arial,sans-serif;">often the <span style="font-style: italic;">y</span> units are different for the two.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i18)
+  </span></td>
+  <td><span class="input">
+wxdraw2d( yrange=[-1,10], key = "f(x)",<br>
+explicit( f(x), x, -10, 10),   line_width = 2, key = "diff",<br>
+explicit(  diff(f(x), x), x, -10, 10 )     )$
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_17.png">
+
+
+
+<!-- Section cell -->
+
+
+<br><h2><a class="mozTocH2" name="mozTocId81809"></a>
+ 3 Differentiation Rules
+</h2>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">The example
+below shows that <span style="font-style: italic;">Maxima</span> can provide an expression for the derivative of
+a particular function. It can do more: <span style="font-style: italic;">Maxima</span> can show the rules for
+differentiation, independent of the specific expression. We ensure that
+<span style="font-style: italic;">Maxima</span> understands the dependencies in <span style="font-style: italic;">f(x)</span> and <span style="font-style: italic;">g(x)</span> but do not specify
+the functional forms.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i19)
+  </span></td>
+  <td><span class="input">
+kill(all) $ depends(f, x, g, x)$<br>
+diff(f + g, x);<br>
+diff(f*g, x);  diff(f/g, x); ratsimp(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_18.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><br>Maxima</span> knows the sum, product, and quotient rules (and many others).1  The quotient rule  is &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">stored in a somewhat different form than the one that is optimal for </span><span style="font-family: Helvetica,Arial,sans-serif;">humans. The command </span><span style="font-family: monospace;">depends(f,x)</span><span style="font-family: Helvetica,Arial,sans-serif;"> is required, to tell <span style="font-style: italic;">Maxima</span> that <span style="font-style: italic;">f</span> is a function of <span style="font-style: italic;">x</span>. &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">It can then deal with its derivative in a symbolic way. If we had not specified these &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">dependencies, then instruction </span><span style="font-family: monospace;">diff(f,x)</span><span style="font-family: Helvetica,Arial,sans-serif;"> would have evoked the response 0 </span><span style="font-family: Helvetica,Arial,sans-serif;">from <span style="font-style: italic;">Maxima</span> because it would have thought that <span style="font-style: italic;">f </span>and <span style="font-style: italic;">x</span> are simply two independent variables.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The cell below contains the same commands as above, but the </span><span style="font-family: monospace;">depends</span><span style="font-family: Helvetica,Arial,sans-serif;"> command has &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">been "commented out." Not knowing about these dependencies, <span style="font-style: italic;">Maxima</span> returns 0's. </span><br>
+
+
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i6)
+  </span></td>
+  <td><span class="input">
+kill(all) $ /* depends(f, x, g, x)$  */<br>
+diff(f + g, x);<br>
+diff(f*g, x);  diff(f/g, x);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_19.png">
+
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH3" name="mozTocId226822"></a>
+  3.1 Extracting and Manipulating Results
+</h3>
+
+
+<!-- Text cell --><span style="font-family: Helvetica,Arial,sans-serif;">
+
+
+</span><br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">A
+variety of instructions control the final form of the answer that
+<span style="font-style: italic;">Maxima</span> returns. If we wish the answer to be over a common denominator,
+for example, then the instruction is </span><span style="font-family: monospace;">factor</span><span style="font-family: Helvetica,Arial,sans-serif;">.</span><br>
+
+
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i4)
+  </span></td>
+  <td><span class="input">
+kill(all)$ <br>
+f(x) := x^(1/2);  g(x) := 1 + x^2;<br>
+answer: diff(f(x)/g(x), x); <br>
+factor(answer);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_20.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>To access just parts of an answer provided by <span style="font-style: italic;">Maxima</span>, request that
+<span style="font-style: italic;">Maxima</span> give you labels with which you can access the individual
+parts. The instruction for this is <span style="font-family: Courier New,Courier,monospace;">pickapart</span>.&nbsp;
+For example, if you wish to find where the derivative in the example
+above is &nbsp;equal to 0, then you need a label with which to access
+the numerator. This is achieved with &nbsp;the following. Note that the
+additional variable 2 tells Maxima to what depth&nbsp; the
+&nbsp;expression should broken into parts. Use the smallest value that
+gets the desired label.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i5)
+  </span></td>
+  <td><span class="input">
+pickapart(  factor(answer),2);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_21.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><br>Maxima</span> has
+attached labels (</span><span style="font-family: monospace;">%t5</span><span style="font-family: Helvetica,Arial,sans-serif;">) and (</span><span style="font-family: monospace;">%t6</span><span style="font-family: Helvetica,Arial,sans-serif;">) to the numerator and denominator of the
+factored form of the answer. (These numbers vary, depending on whether
+<span style="font-style: italic;">Maxima</span> has produced any such labels before this </span><span style="font-family: monospace;">pickapart</span><span style="font-family: Helvetica,Arial,sans-serif;"> command.) To
+see what happens if the level 2 is replaces by 1, 3, and so forth. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+To find the zeros of the numerator, do as follows:</span><br>
+
+
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i7)
+  </span></td>
+  <td><span class="input">
+soln: solve(%t5,x);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_22.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The resulting output, named </span><span style="font-family: monospace;">soln</span><span style="font-family: Helvetica,Arial,sans-serif;">, is a list with two elements.
+(Actually everything in <span style="font-style: italic;">Maxima</span> is a list because it is written in the
+computer language LISP that is based on list processing.) You can
+access the elements that are in the form of equations <span style="font-style: italic;">x = something</span>
+with the instruction first and then value of this solution can be
+retrieved with the instruction&nbsp;</span><span style="font-family: monospace;">first()</span><span style="font-family: Helvetica,Arial,sans-serif;">, or with the appropriate subscript,
+indicated by square brackets.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i8)
+  </span></td>
+  <td><span class="input">
+ the_first_soln: soln[1];    /* or */     first(soln);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_23.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Each item in
+</span><span style="font-family: monospace;">soln</span><span style="font-family: Helvetica,Arial,sans-serif;"> is an expression. We can use the command </span><span style="font-family: monospace;">rhs</span><span style="font-family: Helvetica,Arial,sans-serif;"> (right-hand side) to
+extract the value. It can be bound to a name.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i10)
+  </span></td>
+  <td><span class="input">
+the_first_soln_value : rhs(soln[1]);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_24.png">
+
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH3" name="mozTocId553074"></a>
+  3.2 Derivatives of Trigonometric Functions
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">
+Maxima</span> can be quite helpful in differentiating trigonometric functions. However,
+a couple of commands specific to trig functions are required in order
+to instruct <span style="font-style: italic;">Maxima</span> to apply trig identities in simplifications. For
+example consider the following dialogue:</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i11)
+  </span></td>
+  <td><span class="input">
+ kill(all)$                 diff( sin(x)/(1 + cos(x)),x);<br>
+&nbsp;factor(%);               trigsimp(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_25.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The instruction </span><span style="font-family: monospace;">trigsimp</span><span style="font-family: Helvetica,Arial,sans-serif;"> instructs <span style="font-style: italic;">Maxima</span> to make the obvious simplification using the Pythagorean identity. &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">The other <span style="font-style: italic;">Maxima</span> instruction is </span><span style="font-family: monospace;">trigreduce</span><span style="font-family: Helvetica,Arial,sans-serif;"> which allows using the multiple angle formulas to reduce powers, e. g:</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i4)
+  </span></td>
+  <td><span class="input">
+factor(cos(x)^2 + 2*sin(x)^2);trigsimp(cos(x)^2 + 2*sin(x)^2);<br>
+&nbsp;trigreduce(cos(x)^2 + 2*sin(x)^2);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_26.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+The latter expression might not appear to be simpler than the one we
+started with. It is invaluable, however, for integration, the inverse
+process of differentiation.
+</span><br>
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH3" name="mozTocId652884"></a>
+  3.3 The Chain Rule
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">Before
+<span style="font-style: italic;">Maxima</span> can apply the chain rule, it must know that the relevant
+dependencies exist. In the example below,</span><span style="font-family: monospace;"> f(x):=</span><span style="font-family: Helvetica,Arial,sans-serif;"> defines an explicit
+relationship between<span style="font-style: italic;"> x</span> and <span style="font-style: italic;">f(x)</span>. The existence of relationship between
+<span style="font-style: italic;">x</span> and<span style="font-style: italic;"> u</span> is asserted, but the relationship is not defined.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i7)
+  </span></td>
+  <td><span class="input">
+f(x):= x^3;<br>
+depends(x,u)$<br>
+diff(f(x),u);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_27.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The dialogue
+above uses the functional notation to define <span style="font-style: italic;">f</span> and uses the instruction
+depends to inform Maxima that <span style="font-style: italic;">x</span> is a function of <span style="font-style: italic;">u</span>. It did not,
+however, provide a specific formula for this dependency. We can,
+however, specify the dependency of <span style="font-style: italic;">x</span> on <span style="font-style: italic;">u</span> as follows:
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i10)
+  </span></td>
+  <td><span class="input">
+remove([x,u],dependency)$<br>
+&nbsp;x: sin(u);                               diff(f(x),u);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_28.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Alternatively,
+we can use functional notation for both functions and get <span style="font-style: italic;">Maxima</span> to
+differentiate their composition. Note that in this case <span style="font-style: italic;">g(u</span>) and not<span style="font-style: italic;"> x</span>
+must be entered as the expression to be differentiated.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+Note that </span><span style="font-family: monospace;">diff(f(x), u</span><span style="font-family: Helvetica,Arial,sans-serif;">) results in 0, because <span style="font-style: italic;">Maxima</span> no longer remembers the dependency of <span style="font-style: italic;">x</span> on <span style="font-style: italic;">u</span>.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i13)
+  </span></td>
+  <td><span class="input">
+kill(x)$                        g(x):= sin(x);         diff(f(g(u)),u);          diff(f(x), u);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_29.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The instruction </span><span style="font-family: monospace;">kill</span><span style="font-family: Helvetica,Arial,sans-serif;"> was needed to remove the relationships that had
+been set. If a variable has multiple dependencies and only one of them
+is to be removed, then an instruction like </span><span style="font-family: monospace;">remove([u,x],dependency)</span><span style="font-family: Helvetica,Arial,sans-serif;"> can be
+used.</span><br>
+
+
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH3" name="mozTocId506650"></a>
+  3.4 Implicit Differentiation; Higher Derivatives
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">
+Maxima</span> can easily compute derivatives of implicit functions. Consider the following dialog that instructs<span style="font-style: italic;"> Maxima</span> to find <span style="font-style: italic;">dy/dx</span> given the equation<span style="font-style: italic;"> x</span><sup style="font-style: italic;">2</sup><span style="font-style: italic;"> + y</span><sup style="font-style: italic;">2</sup><span style="font-style: italic;"> = 25</span>.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i17)
+  </span></td>
+  <td><span class="input">
+eqn: x^2 + y^2 = 25;<br>
+depends(y,x)$<br>
+deriv_of_eqn : diff(eqn,x);<br>
+solve(deriv_of_eqn,'diff(y,x));
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_30.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Note the new symbol appearing in the</span><span style="font-family: monospace;"> solve</span><span style="font-family: Helvetica,Arial,sans-serif;"> instruction above. Normally
+the first argument of </span><span style="font-family: monospace;">solve</span><span style="font-family: Helvetica,Arial,sans-serif;"> is an equation or list of equations and the
+second is a variable and a list of variables.&nbsp; Here <span style="font-style: italic;">dy/dx</span> is the
+second argument. Also, note the single quote in front of </span><span style="font-family: monospace;">diff(y,x)</span><span style="font-family: Helvetica,Arial,sans-serif;">. A
+single quote in front of a symbol tells <span style="font-style: italic;">Maxima</span> not to evaluate the
+symbol but to treat it as an unknown quantity. For example,
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i21)
+  </span></td>
+  <td><span class="input">
+[a, b] : [4, 3]$  <br>
+[a + b,    'a + b,    a + 'b,    'a + 'b,    '(a + b)   ];
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_31.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Likewise,
+then, the instruction </span><span style="font-family: monospace;">solve(deriv_of_eqn, 'diff(y,x))</span><span style="font-family: Helvetica,Arial,sans-serif;"> tells <span style="font-style: italic;">Maxima</span> not
+try to evaluate the derivative of <span style="font-style: italic;">y</span> with respect to <span style="font-style: italic;">x</span> directly (which
+it really cannot do anyway) but to regard </span><span style="font-family: monospace;">diff(y,x)</span><span style="font-family: Helvetica,Arial,sans-serif;"> as an unknown
+quantity and solve for it from the differentiated expression, named
+</span><span style="font-family: monospace;">deriv_of_eqn</span><span style="font-family: Helvetica,Arial,sans-serif;">. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">
+Higher Derivatives</span>. The <span style="font-style: italic;">Maxima</span> instruction to find higher order
+derivatives is the same as that for finding the first derivative except
+for a third argument indicating the order. The first command below is
+equivalent to </span><span style="font-family: monospace;">diff(x^n, x, 1</span><span style="font-family: Helvetica,Arial,sans-serif;">). (Confirm this.) The second in the list
+of commands calls for the fourth derivative. The third command calls
+for the <span style="font-style: italic;">n</span>-th derivative. Until <span style="font-style: italic;">n</span> is specified, this expression cannot
+be evaluated. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+Exercise: Confirm that for the expression <span style="font-style: italic;">x<sup>8</sup></span> the 8-th derivative
+equals 8!. Does this&nbsp; generalize to any value of <span style="font-style: italic;">n</span>? Explain.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i23)
+  </span></td>
+  <td><span class="input">
+kill(n)$<br>
+[diff(x^n, x),      diff(x^n, x, 4), diff(x^n, x, n)];<br>
+n:8$<br>
+[diff(x^n, x),      diff(x^n, x, 4), diff(x^n, x, n)];
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_32.png">
+
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH3" name="mozTocId482446"></a>
+  3.5 Related Rates
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">
+Maxima</span> can help in solving related rates problems. For example consider the problem &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">of finding the rate of change of the area of a circle given that the rate of rate of change of &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">the circle's radius is <span style="font-style: italic;">dr/dt = 60</span> when <span style="font-style: italic;">t = 2</span> and <span style="font-style: italic;">r = 120</span>:</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i27)
+  </span></td>
+  <td><span class="input">
+kill(a, r)$<br>
+area: a = %pi*r^2;<br>
+depends([a,r],t)$<br>
+deriv_of_area: diff(area,t);<br>
+subst([diff(r,t)=60, r=120],deriv_of_area);<br>
+float(rhs(%));
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_33.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br><span style="font-style: italic;">Maxima</span> must be told which variables are time-dependent with the
+instruction </span><span style="font-family: monospace;">depends([a list of variables], </span><span style="font-style: italic; font-family: monospace;">t</span><span style="font-family: monospace;">)</span><span style="font-family: Helvetica,Arial,sans-serif;">. The instruction <span style="font-family: monospace;">subst</span>
+instructs<span style="font-style: italic;"> Maxima</span> to substitute a list of equations appearing as the
+first argument of </span><span style="font-family: monospace;">subst</span><span style="font-family: Helvetica,Arial,sans-serif;">, enclosed in square brackets, into the
+expression appearing as its second argument. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">
+Maxima</span>'s default is to produce exact calculations, not numeric
+approximations. Thus, <span style="font-style: italic;">da/dt = 14400</span></span><big style="font-style: italic;"><big>π</big></big><span style="font-family: Helvetica,Arial,sans-serif;">. The </span><span style="font-family: monospace;">float(%)</span><span style="font-family: Helvetica,Arial,sans-serif;"> command instructs
+<span style="font-style: italic;">Maxima</span> to provide the floating-point approximation to the exact value.
+You might want to see how many digits of </span><span style="font-family: monospace;">%p</span><span style="font-family: monospace;">i</span><span style="font-family: Helvetica,Arial,sans-serif;"> (<span style="font-style: italic;">Maxima</span>'s way of denoting
+the number as opposed to the Greek letter) <span style="font-style: italic;">Maxima</span> can find by giving
+the instructions </span><span style="font-family: monospace;">fpprec= 1000$ fpprintprec:1000$ bfloat(%pi)</span><span style="font-family: Helvetica,Arial,sans-serif;">;. The
+commands <span style="font-family: monospace;">fpprec</span> and </span><span style="font-family: monospace;">fpprintprec</span><span style="font-family: Helvetica,Arial,sans-serif;"> set the floating-point precision and
+the floating-point print precision. These need not have the same value.</span>
+<br>
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH3" name="mozTocId707780"></a>
+  3.6 Linear Approximations and Differentials
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+We can use the </span><span style="font-family: monospace;">diff</span><span style="font-family: Helvetica,Arial,sans-serif;"> operation to express the differential of an
+equation as a linear function of its arguments. The next cell defines
+<span style="font-style: italic;">f(x)</span> and a differential equation based on that function. The command
+</span><span style="font-family: monospace;">diff</span><span style="font-family: Helvetica,Arial,sans-serif;"> does not specify a variable with which to take a derivative, so
+<span style="font-style: italic;">Maxima</span> returns <span style="font-style: italic;">dy = (dy/dx) dx</span>, where <span style="font-style: italic;">dx</span> is denoted </span><span style="font-family: monospace;">del(x)</span><span style="font-family: Helvetica,Arial,sans-serif;">. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The expression is picked apart for use below.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i33)
+  </span></td>
+  <td><span class="input">
+kill(all)$    f(x) := sin(x);<br>
+diff(f(x) );<br>
+pickapart(%, 1)$
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_34.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>To create an equation that produces a line tangent to <span style="font-style: italic;">f(x</span>) at the value
+<span style="font-style: italic;">x =&nbsp;</span></span><big style="font-style: italic;"><big>π</big></big><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">/3</span>, we evaluate the term <span style="font-style: italic;">dy/dx</span> at that value. Then we create a
+linear function with that slope that passes through the point <span style="font-style: italic;">(</span></span><big style="font-style: italic;"><big>π</big></big><span style="font-family: Helvetica,Arial,sans-serif; font-style: italic;">/3,
+f(</span><big style="font-style: italic;"><big>π</big></big><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">/3))</span>.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i5)
+  </span></td>
+  <td><span class="input">
+ev(%t3,  x = %pi/3);<br>
+f(%pi/3) + %*(x - %pi/3);<br>
+float(%);     expand(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_35.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><br>Maxima</span> has a very powerful built-in tool for finding linear approximations to functions called the Taylor expansion of order 1.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i9)
+  </span></td>
+  <td><span class="input">
+L: taylor(f(x), x, %pi/3,  1);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_36.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The ellipsis
+(...) after the output denotes a residual, and the </span><span style="font-family: monospace;">/T/</span><span style="font-family: Helvetica,Arial,sans-serif;"> before the
+output indicates that the terms reported constitute a truncated
+representation of a polynomial of higher degree. We use</span><span style="font-family: monospace;"> taytorat</span><span style="font-family: Helvetica,Arial,sans-serif;"> to
+convert the Taylor expansion to a rational expression. The second and
+third commands below are used to express the result in a manner that
+makes it comparable to the result above. </span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i10)
+  </span></td>
+  <td><span class="input">
+L: taytorat(L);         <br>
+expand(L);                   float(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_37.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The graph below shows the linear approximation to the function, along
+with the function itself. The graph makes obvious one important aspect
+of the linear approximation: It is best near the value for which the
+Taylor expansion is computed.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i13)
+  </span></td>
+  <td><span class="input">
+wxdraw2d(<br>
+explicit(f(x), x, 0, %pi), explicit(L, x, 0, %pi)<br>
+)$
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_38.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Taylor
+polynomials come in all degrees. You will work with them in a
+systematic way later. The last argument in the <span style="font-style: italic;">Maxima</span> instruction
+Taylor specifies the degree. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+<!-- Subsection cell -->
+
+
+<br><h3>
+  3.7 Locating Maxima and Minima
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">
+Maxima</span> can be a great help in checking the process of locating critical points of functions, as the following dialogue shows.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i14)
+  </span></td>
+  <td><span class="input">
+kill(all)$<br>
+f(x):=x^(3/5)*(4-x);<br>
+deriv_of_f: diff(f(x),x);<br>
+&nbsp;soln: solve(deriv_of_f, x); x_crit: rhs(soln[1]);<br>
+f(x_crit) ;   float(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_39.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Examination of output </span><span style="font-family: monospace;">%o2</span><span style="font-family: Helvetica,Arial,sans-serif;">, the derivative function, shows that <span style="font-style: italic;">df/dx</span> is
+not defined when <span style="font-style: italic;">x = 0</span>. The graphs below show the behavior of<span style="font-style: italic;"> f</span> and
+<span style="font-style: italic;">df/dx</span>. The derivative grows without bound as <span style="font-style: italic;">x</span> approaches 0 (use the
+limit command to confirm this), but <span style="font-style: italic;">f</span> is continuous. </span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i7)
+  </span></td>
+  <td><span class="input">
+fgraph: gr2d( xaxis = true, explicit(f(x), x, -0.25 , 1.5*x_crit),<br>
+line_type = dots,<br>
+points_joined=true, points( [ [x_crit, 0], [x_crit, f(x_crit) ] ]) )$<br>
+diffgraph: gr2d(xaxis = true, yrange=[-5, 10], <br>
+explicit(deriv_of_f, x, -.25, 1.5*x_crit), <br>
+point_size = 2, points_joined = true, line_type=dots,<br>
+points( [[x_crit,-5],[x_crit, 10] ])<br>
+)  $<br>
+wxdraw(fgraph, diffgraph)$
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_40.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Have we found a maximum or a minimum? The condition that <span style="font-style: italic;">df/dx = 0</span> is a
+necessary condition for a value of <span style="font-style: italic;">f(x)</span> to be a (local) maximum. It is
+also a necessary condition for the value of<span style="font-style: italic;"> f(x)</span> to be a (local)
+minimum. To determine which of the two has been discovered requires
+that we examine the second derivative of <span style="font-style: italic;">f</span> with respect to <span style="font-style: italic;">x</span>. If this
+second derivative is negative, then the critical value of <span style="font-style: italic;">x</span> yields a
+(local) maximum value of <span style="font-style: italic;">f(x)</span>; if it is positive, a (local) minimum has
+been found. In our case, the result is a local (and global, the graph
+suggests) maximum value of<span style="font-style: italic;"> f(x)</span>.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i10)
+  </span></td>
+  <td><span class="input">
+second_deriv: diff(f(x), x, 2);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_41.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Inspection of the expression above shows that the second derivative is
+negative. We can determine its exact value by using </span><span style="font-family: monospace;">subst</span><span style="font-family: Helvetica,Arial,sans-serif;"> or </span><span style="font-family: monospace;">ev</span><span style="font-family: Helvetica,Arial,sans-serif;">. Note
+the alternative ways of converting the exact answer to a floating point
+value.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i11)
+  </span></td>
+  <td><span class="input">
+ev(second_deriv, x=x_crit)$ float(%);<br>
+float(  subst(x_crit, x, second_deriv) );
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_42.png">
+
+
+
+<!-- Subsection cell -->
+
+
+<br><br><br><h3><a class="mozTocH3" name="mozTocId454839"></a>
+  3.8 Optimization: Finding Maximum or Minimum Values of Functions Subject to a Constraint&nbsp;<br></h3>
+
+
+<!-- Text cell -->
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;">We use
+<span style="font-style: italic;">Maxima</span> to solve the following. A rectangular window is surmounted by a
+semicircle. The rectangle is of clear glass while the semicircle is of
+tinted glass that transmits only half as much light per unit area as
+clear glass does. The total perimeter is fixed. Find the proportions of
+the window that will admit the most light. Neglect the thickness of the
+frame. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+Let <span style="font-style: italic;">r</span> be the radius of the semicircle. Then <span style="font-style: italic;">2r</span> is the base of the
+rectangle. Denote the height of the rectangle by <span style="font-style: italic;">h</span>. Let <span style="font-style: italic;">P</span> be the total
+perimeter of the window. Then <span style="font-style: italic;">P</span> is a fixed constant. We have the
+following equations connecting <span style="font-style: italic;">r</span> and <span style="font-style: italic;">h</span> and expressing the amount of
+light <span style="font-style: italic;">L</span> in terms of <span style="font-style: italic;">r</span> and <span style="font-style: italic;">h</span>, assuming that <span style="font-style: italic;">L</span> is one for each unit of
+area in the rectangular part and <span style="font-style: italic;">L</span> is 1/2 for each unit of area in the
+semicircular part of the window. We denote the fixed value of <span style="font-style: italic;">P</span> as <span style="font-style: italic;">P0</span>.</span><br>
+
+
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i14)
+  </span></td>
+  <td><span class="input">
+kill(all)$<br>
+P : 2*r +2*h + %pi*r$    L : 2*r*h + %pi*r^2/4$<br>
+print("Perimeter = ", P, ", and Light = ", L)$ <br>
+soln_h : solve(P = P0,h);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_43.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Extract the right hand side of the solution and assign it the name
+</span><span style="font-family: monospace;">h_is</span><span style="font-family: Helvetica,Arial,sans-serif;">. &nbsp;Substitute this &nbsp;into the <span style="font-style: italic;">L</span> expression, yielding <span style="font-style: italic;">L</span>
+as a function of <span style="font-style: italic;">r</span> (recall that <span style="font-style: italic;">P</span> has a constant value <span style="font-style: italic;">P0</span>). </span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i5)
+  </span></td>
+  <td><span class="input">
+h_is : rhs(first(soln_h));<br>
+L_fcn_r : ratsubst(h_is,h,L);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_44.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Taking the derivative of </span><span style="font-family: monospace;">L_fcn_r</span><span style="font-family: Helvetica,Arial,sans-serif;"> and setting the derivative equal to zero yields an expression for <span style="font-style: italic;">r</span>: <span style="font-style: italic;">r</span> is proportional to <span style="font-style: italic;">P0</span>.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i7)
+  </span></td>
+  <td><span class="input">
+deriv_L :diff(L_fcn_r,r);<br>
+soln_r:solve(deriv_L = 0,r);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_45.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+<br>Assign the right hand side of the solution the name </span><span style="font-family: monospace;">r_is</span><span style="font-family: Helvetica,Arial,sans-serif;"> and&nbsp;substitute </span><span style="font-family: monospace;">r_is</span><span style="font-family: Helvetica,Arial,sans-serif;"> into the expression </span><span style="font-family: monospace;">h_is</span><span style="font-family: Helvetica,Arial,sans-serif;">, yielding the expression</span><span style="font-family: monospace;">
+h_is_now</span><span style="font-family: Helvetica,Arial,sans-serif;">, which shows that <span style="font-style: italic;">h</span>, like <span style="font-style: italic;">r</span>, is proportional to <span style="font-style: italic;">P</span>. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+That that the critical values of both <span style="font-style: italic;">h</span> and <span style="font-style: italic;">r</span> are proportional to <span style="font-style: italic;">P0</span>
+implies that they are proportional to each other. The third command
+shows the ratio of height to the radius.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i9)
+  </span></td>
+  <td><span class="input">
+r_is: rhs(soln_r[1]);<br>
+h_is_now: subst(r_is, r, h_is), ratsimp;<br>
+h_is_now / r_is, ratsimp;
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_46.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+Finally, we can determine the maximum light, given the window's perimeter.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i12)
+  </span></td>
+  <td><span class="input">
+max_L : subst([r=r_is, h=h_is_now], L)$<br>
+ratsimp(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_47.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>An alternative approach to solving problem like this one is to
+differentiate the constraint equation. This is significantly simpler
+than solving the constraint equation for one of the variables in cases
+where the constraint equation is complicated or perhaps not even
+solvable for either of the variables. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+In the above problem we differentiate the equation for the perimeter
+with respect to <span style="font-style: italic;">r</span>. This yields a linear equation in the unknown
+derivative <span style="font-style: italic;">dh/dr</span> which can easily be solved. Then we differentiate the
+formula for <span style="font-style: italic;">L</span> with respect to <span style="font-style: italic;">r</span> and this would also involve the &nbsp;unknown derivative <span style="font-style: italic;">dh/dr</span> which now can be eliminated. And then one
+could determine the relationship between <span style="font-style: italic;">r</span> and <span style="font-style: italic;">h</span> that yields a critical
+point. The following dialogue indicates how <span style="font-style: italic;">Maxima</span> can be instructed to
+carry out this computation.</span><br>
+
+
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i14)
+  </span></td>
+  <td><span class="input">
+kill(all)$          depends(h,r)$<br>
+P : 2*r +2*h + %pi*r$<br>
+L : 2*r*h + %pi*r^2/4$<br>
+deriv_P : diff(P-P0,r);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_48.png">
+
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i5)
+  </span></td>
+  <td><span class="input">
+solve(deriv_P, diff(h, r));<br>
+deriv_h : rhs(%[1]);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_49.png">
+
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i7)
+  </span></td>
+  <td><span class="input">
+deriv_L : diff(L,r);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_50.png">
+
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i8)
+  </span></td>
+  <td><span class="input">
+deriv_L_is: ratsubst(deriv_h,  'diff(h,r), deriv_L);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_51.png">
+
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i9)
+  </span></td>
+  <td><span class="input">
+solve(deriv_L_is = 0, r);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_52.png">
+
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH3" name="mozTocId924379"></a>
+  3.9 Optimization with More than One Variable
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+Suppose that we wish to construct a box that has a given surface area
+in a configuration that yields the maximum volume. The Lagrangian
+approach to solving a problem like this is to create an augmented
+expression that incorporates the constraint. Expression </span><span style="font-family: monospace;">A</span><span style="font-family: Helvetica,Arial,sans-serif;"> in the cell
+below adds an undetermined multiplier mu&nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;"><small>(</small></span><big>μ</big><span style="font-family: Helvetica,Arial,sans-serif;">)</span><span style="font-family: Helvetica,Arial,sans-serif;"> times the constraint to the
+expression for volume. The constraint is expressed so that the value by
+which mu <small>(</small></span><big>μ</big><span style="font-family: Helvetica,Arial,sans-serif;">) is being multiplied is zero.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i10)
+  </span></td>
+  <td><span class="input">
+kill(all)$<br>
+V: L*W*H;   S: 2*(L*W + L*H + W*H);<br>
+A: V + mu*(S0 - S);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_53.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+<br>Take all possible derivatives of the augmented expression,
+including a derivative with respect to&nbsp;</span><big>μ</big><span style="font-family: Helvetica,Arial,sans-serif;">, which is the constraint. The
+last line is added only to make the output easier to read. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+Solve the system of equations for the derivatives with respect to <span style="font-style: italic;">L</span>,
+<span style="font-style: italic;">W</span>, and <span style="font-style: italic;">H</span>. The value of&nbsp;</span><big style="font-style: italic;">μ</big><span style="font-family: Helvetica,Arial,sans-serif;"> will be implied, as we see below.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i4)
+  </span></td>
+  <td><span class="input">
+A_L : diff(A, L);<br>
+A_W : diff(A, W);<br>
+A_H : diff(A, H);<br>
+A_mu : diff(A, mu);<br>
+soln: solve([A_L, A_W, A_H], [L, W, H]);<br>
+transpose( matrix(soln) );
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_54.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br><span style="font-style: italic;">Maxima</span> returns two solutions. The first, <span style="font-style: italic;">L = W = H = 0</span>, yields a
+minimum. In this case,&nbsp;</span><big>μ</big><span style="font-family: Helvetica,Arial,sans-serif;"> must equal zero in order for <span style="font-style: italic;">S0 - S = 0</span> to
+hold (<span style="font-style: italic;">S0 &gt; 0</span> and <span style="font-style: italic;">S = 0</span>). The interpretation is the adding to <span style="font-style: italic;">S</span> does
+not further decrease <span style="font-style: italic;">V</span>; a minimum has been attained.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The second solution provides the conditions for a maximum <span style="font-style: italic;">V</span>. Here, <span style="font-style: italic;">L = W
+= H = 4*</span></span><big style="font-style: italic;">μ</big><span style="font-family: Helvetica,Arial,sans-serif;">. The example below illustrates this result. Suppose that <span style="font-style: italic;">S =
+60</span> meters<sup>2</sup>. Then <span style="font-style: italic;">2*(3*L</span><sup style="font-style: italic;">2</sup><span style="font-style: italic;">) = 60,</span> so L =&nbsp;</span><big><big>√</big></big><span style="font-family: Helvetica,Arial,sans-serif;">(10) meters.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i10)
+  </span></td>
+  <td><span class="input">
+solnL0: solve(60 - 6*L^2, L);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_55.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The resulting volume is 10<sup>(3/2)</sup> meters<sup>3</sup>, approximately 31.6228 meters<sup>3</sup>.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i11)
+  </span></td>
+  <td><span class="input">
+L0: rhs(solnL0[2]);<br>
+V0: ev(V, L = L0, W = L0, H = L0);<br>
+float(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_56.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The value of&nbsp;</span><big>μ</big><span style="font-family: Helvetica,Arial,sans-serif;"> is sqrt(10)/4, approximately 0.7906. Therefore a change
+in <span style="font-style: italic;">S</span> from 60 to 61 meters<sup>2</sup> should increase <span style="font-style: italic;">V</span> by approximately 0.7906
+meters<sup>3</sup>. The results below show that the actual increase is
+approximately 0.7939 meters<sup>3</sup>. Confirm that the discrepancy between
+<span style="font-style: italic;">L0/4 =&nbsp;</span></span><big style="font-style: italic;">μ</big><span style="font-family: Helvetica,Arial,sans-serif;"> and the actual value decreases as h decreases by using
+smaller values of <span style="font-style: italic;">h0</span>.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+We can confirm that&nbsp;</span><big>μ</big><span style="font-family: Helvetica,Arial,sans-serif;"> has the same units as <span style="font-style: italic;">L</span>, <span style="font-style: italic;">W</span>, and <span style="font-style: italic;">H</span>:&nbsp;</span><big>μ</big><span style="font-family: Helvetica,Arial,sans-serif;"> is the
+ratio of the change in volume (meters<sup>3</sup>) to change in surface
+(meters<sup>2</sup>). Thus, the unit for&nbsp;</span><big>μ</big><span style="font-family: Helvetica,Arial,sans-serif;"> is meters, the same as for <span style="font-style: italic;">L</span>, <span style="font-style: italic;">W</span>, and
+<span style="font-style: italic;">H</span>.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i14)
+  </span></td>
+  <td><span class="input">
+h0: 1$  S1: 60 + h0$<br>
+solnL1 : solve(S1 - 6*L^2, L)$  L1: rhs(solnL1[2])$<br>
+V1:  ev( V, L = L1, W = L1, H = L1)$  float(%);<br>
+float( [(V1 - V0)/h0,  L0/4]);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_57.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The
+Lagrangian technique can be applied to multiple constraints. Suppose
+that the height of the box is required to equal one-half the length. We
+define a new augmented function that adds this constraint to augmented
+function </span><span style="font-family: monospace;">A</span><span style="font-family: Helvetica,Arial,sans-serif;">. We then generate the set of derivatives and solve for <span style="font-style: italic;">L, W,
+H</span>, and kappa (</span><big>κ</big><span style="font-family: Helvetica,Arial,sans-serif;">), the new multiplier.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i21)
+  </span></td>
+  <td><span class="input">
+A2 : A + kappa*(.50 - H/L);<br>
+A2_L : diff(A2, L);<br>
+A2_W : diff(A2, W);<br>
+A2_H : diff(A2, H);<br>
+A2_mu : diff(A2, mu);<br>
+A2_kappa: diff(A2, kappa);<br>
+<br>
+soln2: solve([A2_L, A2_W, A2_H, A2_kappa], [L, W, H, kappa])$<br>
+transpose( matrix(soln2) );
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_58.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Again, <span style="font-style: italic;">Maxima</span> produces two solutions. The first shows the conditions
+for minimizing the volume, and the second for maximizing it. Now the
+values of <span style="font-style: italic;">L, W</span>, and <span style="font-style: italic;">H</span> are all different from each other.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The condition that&nbsp;</span><big style="font-style: italic;">κ</big><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"> = 24</span></span><big>μ</big><span style="font-family: Helvetica,Arial,sans-serif;"><sup><span style="font-style: italic;">3</span></sup> warrants attention. The value of&nbsp;</span><big>κ</big><span style="font-family: Helvetica,Arial,sans-serif;"> is proportional to the box's volume (recall that&nbsp;</span><big style="font-family: monospace;"><big>μ</big></big><span style="font-family: Helvetica,Arial,sans-serif;"> is in the
+same units as <span style="font-style: italic;">L, W</span>, and <span style="font-style: italic;">H</span>).</span> <br>
+
+
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i29)
+  </span></td>
+  <td><span class="input">
+[L2 : rhs(soln2[2][1]),  W2 : rhs(soln2[2][2]),  H2 : rhs(soln2[2][3]), <br>
+kappa2 : rhs(soln2[2][4])];<br>
+soln_mu2 : solve(2*(L2*W2 + L2*H2 + W2*H2)- 60, mu)$  float(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_59.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The value of&nbsp;</span><big>μ</big><span style="font-family: Helvetica,Arial,sans-serif;"> falls from approximately 0.7906 to approximately
+0.7454, so less volume is added per unit change in the surface area. We
+reevaluate<span style="font-style: italic;"> L2, W2, H2</span>, and&nbsp;</span><big style="font-style: italic;">κ</big><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">2</span> given the positive value of&nbsp;</span><big>μ</big><span style="font-family: Helvetica,Arial,sans-serif;"> --
+</span><span style="font-family: monospace;">soln_mu2[2] </span><span style="font-family: Helvetica,Arial,sans-serif;">-- and then compute the new volume.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The value of&nbsp;</span><big style="font-style: italic;">κ</big><span style="font-family: Helvetica,Arial,sans-serif;"> estimates that a 0.01 unit increase in the ratio
+(from 0.5 to 0.51) will cause volume to rise by approximately 0.0994
+meters<sup>3</sup>. Replace 0.5 with 0.51 above and confirm that the actual
+increase is approximately 0.0973.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i32)
+  </span></td>
+  <td><span class="input">
+[L2, W2, H2, kappa2] : ev([L2, W2, H2, kappa2], soln_mu2[2])$  float(%);<br>
+V2 : L2 * W2 * H2$  float(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_60.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+For <span style="font-style: italic;">S = 60</span>, the maximum area is now approximately 29.8142 meters<sup>3</sup>,
+down from approximately 32.4166 meters<sup>3</sup> when the relationships among<span style="font-style: italic;">
+L</span>, <span style="font-style: italic;">W</span>, and <span style="font-style: italic;">H</span> are not constrained. </span><br>
+
+
+<!-- Section cell -->
+
+
+<br><h2><a class="mozTocH2" name="mozTocId24372"></a>
+ 4 Integration
+</h2>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+The syntax of indefinite integration resembles that of differentiation,
+with </span><span style="font-family: monospace;">integrate</span><span style="font-family: Helvetica,Arial,sans-serif;"> replacing </span><span style="font-family: monospace;">diff</span><span style="font-family: Helvetica,Arial,sans-serif;">, except that multiple integration
+requires multiple calls to </span><span style="font-family: monospace;">integrate</span><span style="font-family: Helvetica,Arial,sans-serif;">. The general expressions below
+show that <span style="font-style: italic;">Maxima</span> does not report a constant of integration. It is up to
+the analyst to keep track.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i36)
+  </span></td>
+  <td><span class="input">
+kill(all)$   <br>
+/* Indefinite integrals */<br>
+["Single integral: ", integrate(f(x), x),   <br>
+&nbsp;&nbsp;&nbsp;"       Double integral: ", integrate(integrate(f(x,y), y), x    ) ];<br>
+/* A definite integral */<br>
+["Single definite integral:  ", integrate(f(x), x, a, b)   ];
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_61.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+With the same function<span style="font-style: italic;"> f (x, y) = x</span><sup style="font-style: italic;">4</sup><span style="font-style: italic;">/y</span>, we find the indefinite and
+definite integrals of the expression with respect to <span style="font-style: italic;">x</span>. The definite
+integral is over the range <span style="font-style: italic;">x = 0</span> to <span style="font-style: italic;">x = 5</span>. Then the corresponding
+integrals of the resulting expression with respect to <span style="font-style: italic;">y</span>, with the
+definite integral taken over the range <span style="font-style: italic;">y = 1</span> to <span style="font-style: italic;">y = 2</span>. </span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i3)
+  </span></td>
+  <td><span class="input">
+f(x, y) := x^4 / y;<br>
+integrate(f(x, y),x );         integrate(%, y);<br>
+integrate(f(x, y), x, 0, 5);   integrate(%, y, 1, 2);         float(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_62.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The output can also be generated in a single nested command. Setting
+the limits as floating point numbers invokes a set of statements
+specifying the substitutions that <span style="font-style: italic;">Maxima</span> made while carrying out the
+operation. Adding the command </span><span style="font-family: monospace;">ratprint: false</span><span style="font-family: Helvetica,Arial,sans-serif;"> as the first line would
+suppress this output, which is often not useful.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i9)
+  </span></td>
+  <td><span class="input">
+integrate(integrate(f(x, y), x, 0, 5), y, 1.0, 2.0 );
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_63.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The limit of
+a Riemann sum, if it exists, defines the definite integral of a
+function on [<span style="font-style: italic;">a, b</span>]. The actual evaluation of the limit of the Riemann
+sums associated to a function on an interval is tedious. <span style="font-style: italic;">Maxima</span> can
+help. <span style="font-style: italic;">Maxima</span>'s instruction for summing a series is sum. The sum command
+takes four arguments: the expression, the index, the beginning value of
+the index, and the ending value of the index. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+As before, the </span><span style="font-family: monospace;">print</span><span style="font-family: Helvetica,Arial,sans-serif;"> command is not required, but it makes the result easier to read.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i10)
+  </span></td>
+  <td><span class="input">
+kill(R_sum)$<br>
+wxdraw2d( explicit(x^4, x, 2, 5)  )$ <br>
+print( R_sum: (3/n)*sum((2+3*i/n)^4,i,1,n),  "  =  ",  ratsimp(R_sum)  )$
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_64.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><br>Maxima</span>'s default is not to carry out the evaluation of the sum of a series. The instruction to change this is </span><span style="font-family: monospace;">simpsum : true</span><span style="font-family: Helvetica,Arial,sans-serif;">.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i13)
+  </span></td>
+  <td><span class="input">
+simpsum:true$  print( "The Riemann sum  of x^4 is   ", <br>
+&nbsp;&nbsp;&nbsp;R_sum: ratsimp(  (3/n)*sum((2+3*i/n)^4,i,1,n)   ), <br>
+&nbsp;&nbsp;&nbsp;", whose limit is ",<br>
+&nbsp;&nbsp;&nbsp;float( limit(R_sum, n, infinity) )   )$
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_65.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+The result of the corresponding definite integral confirms that the integral does equal the limit of the Riemann sum.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i15)
+  </span></td>
+  <td><span class="input">
+float(  integrate(x^4, x, 2, 5)   );
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_66.png">
+
+
+
+<!-- Subsection cell -->
+
+
+<br><br><h3><a class="mozTocH3" name="mozTocId766760"></a>
+  4.1 The Fundamental Theorem of Calculus
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+That <span style="font-style: italic;">Maxima</span> knows the Fundamental Theorem is illustrated below. The
+extensions, labeled "Chain rule illustrations," show the flexibility of
+the <span style="font-family: monospace;">lambda</span> function. Note the use of the single-quote operator to
+suppress evaluation.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i16)
+  </span></td>
+  <td><span class="input">
+kill(all)$<br>
+assume(x&gt;0)$<br>
+S : lambda( [x], integrate(a*log(t),t,0,x));<br>
+answr:diff(S(x),x);<br>
+["Chain rule illustrations: ", 'diff(S(x^3),x), " = ", diff(S(x^3),x)  ] ;<br>
+[ 'diff(S((1/x)),x) ,  " = ", diff(S((1/x)),x)];
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_67.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Without the command </span><span style="font-family: monospace;">assume(x &gt; 0)</span><span style="font-family: Helvetica,Arial,sans-serif;"> <span style="font-style: italic;">Maxima</span> will ask the user to declare the sign of <span style="font-style: italic;">x</span>. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">The
+name of the dummy variable <span style="font-style: italic;">t</span> in the definition of <span style="font-style: italic;">S</span> cannot be chosen to
+be <span style="font-style: italic;">x</span> even though that is perfectly acceptable in mathematical
+communications.
+</span><br>
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH3" name="mozTocId823760"></a>
+  4.2 The Commands desolve and ode2
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">The <span style="font-style: italic;">Maxima</span>
+instruction</span><span style="font-family: monospace;"> integrate</span><span style="font-family: Helvetica,Arial,sans-serif;"> serves either of two purposes depending on the number of
+arguments that are passed to it. It is used for telling <span style="font-style: italic;">Maxima</span> to find
+either the indefinite or definite integral. If two arguments are passed
+then<span style="font-style: italic;"> Maxima</span> finds the indefinite integral of the function in the first
+argument with respect to the variable in the second. If four arguments
+are passed, then <span style="font-style: italic;">Maxima</span> finds the definite integral over the interval
+starting at the third and ending at the fourth.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+Another instruction that can be used to achieve the same purpose is
+</span><span style="font-family: monospace;">ode2</span><span style="font-family: Helvetica,Arial,sans-serif;">. It can be used to instruct <span style="font-style: italic;">Maxima</span> to solve the equation <span style="font-style: italic;">dy/dx = f
+(x)</span>, or <span style="font-style: italic;">dy = f(x) dx</span> for <span style="font-style: italic;">y</span>. This is a very powerful instruction but in
+this case using a sledge hammer to drive a tack does no harm. The
+following indicates how this is done. The </span><span style="font-family: monospace;">ode2</span><span style="font-family: Helvetica,Arial,sans-serif;"> command follows the
+familiar integrate command.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i6)
+  </span></td>
+  <td><span class="input">
+eqn: 'diff(y,x) =  sqrt(1/x^2-1/x^3);<br>
+integrate(rhs(eqn), x);<br>
+ode2(eqn,y,x);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_68.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Whenever
+<span style="font-style: italic;">Maxima</span> is handed an expression it automatically tries to evaluate it.
+Therefore the quote before the </span><span style="font-family: monospace;">diff</span><span style="font-family: Helvetica,Arial,sans-serif;"> tells <span style="font-style: italic;">Maxima</span> not to waste time
+trying to evaluate <span style="font-style: italic;">dy/dx</span>. <span style="font-style: italic;">Maxima</span> is being told what this derivative is
+and the next instruction will ask it to solve for<span style="font-style: italic;"> y</span>. Note that when you
+use <span style="font-family: monospace;">ode2</span> Maxima includes the arbitrary constant </span><span style="font-family: monospace;">%c</span><span style="font-family: Helvetica,Arial,sans-serif;"> in its response. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+Here </span><span style="font-family: monospace;">ode</span><span style="font-family: Helvetica,Arial,sans-serif;"> stands for <span style="font-style: italic;">ordinary differential equation</span>. From the <span style="font-style: italic;">Maxima
+Manual</span>: "The function</span><span style="font-family: monospace;"> ode2</span><span style="font-family: Helvetica,Arial,sans-serif;"> solves an ordinary differential equation
+(ODE) of first or second order." Another <span style="font-style: italic;">Maxima</span> command, </span><span style="font-family: monospace;">desolve</span><span style="font-family: Helvetica,Arial,sans-serif;">, can
+be used to solve systems of one or more ordinary differential
+equations.
+</span><br>
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH3" name="mozTocId863918"></a>
+  4.3 Intersections and Areas Between Curves
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">
+Maxima </span>can be very helpful in finding the points of intersection of curves. The cell below demonstrates how.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">Maxima</span>
+does not integrate absolute value. Thus to get <span style="font-style: italic;">Maxima</span> to do a problem
+where neither graph remains above the other on the entire interval, we
+first find the points of intersection and then instruct <span style="font-style: italic;">Maxima</span> to sum
+the integrals of the upper function minus the lower function over the
+relevant interval(s).</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The </span><span style="font-family: monospace;">draw2d</span><span style="font-family: Helvetica,Arial,sans-serif;"> command below has much more detail than is required to solve
+this problem, but such detail can be useful. The <span style="font-style: italic;">Maxima Manual</span> (Chapter
+48) contains more information regarding options for the </span><span style="font-family: monospace;">draw</span><span style="font-family: Helvetica,Arial,sans-serif;"> command.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i9)
+  </span></td>
+  <td><span class="input">
+kill(all)$<br>
+[f1, f2]  : [x^2 + 10, -2*x^2 + 25*x]$<br>
+wxdraw2d(title       = "Region bounded by two functions",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fill_color  = gray,         filled_func = f2,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;explicit(f1,x,0,10),       filled_func = false,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line_width
+= 2, key = concat("f1: ", string(f1) ),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color       = red,           explicit(f1,x,0,10),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key  = concat("f2: ", string(f2) ),          color       = blue,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;explicit(f2,x,0,10) )$
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_69.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Use </span><span style="font-family: monospace;">solve</span><span style="font-family: Helvetica,Arial,sans-serif;"> to determine the range for which <span style="font-style: italic;">f2 &gt; f1</span>.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i3)
+  </span></td>
+  <td><span class="input">
+soln : solve(f1=f2, x)$   float(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_70.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The area to be determined is the integral of<span style="font-style: italic;"> f2 - f1</span> over this interval.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i5)
+  </span></td>
+  <td><span class="input">
+x1 : rhs(soln[1])$  x2: rhs(soln[2])$<br>
+float(  integrate(f2 - f1, x, x1, x2)    );
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_71.png">
+
+
+
+<!-- Subsection cell -->
+
+
+<br><br><h3><a class="mozTocH3" name="mozTocId23844"></a>
+  4.4 Volumes by Slicing: Using Trigsimp
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">Maxima</span>
+cannot help with finding the formula for the area of the cross-section
+of a typical slice <span style="font-style: italic;">A(x)</span> but it does help in checking the ensuing
+integration.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+For example, finding the volume generated by revolving the area below <span style="font-style: italic;">y
+= sec(x)</span>, above <span style="font-style: italic;">y = 1</span> and between <span style="font-style: italic;">x = 1</span> and <span style="font-style: italic;">x = -1</span> requires evaluating
+the integral of the expression <span style="font-style: italic;">V = sec<sup>2</sup>(x) - 1</span> over the indicated
+range. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The command </span><span style="font-family: monospace;">trigsimp</span><span style="font-family: Helvetica,Arial,sans-serif;"> (trigonometric simplification) is used for
+trigonometric expressions as </span><span style="font-family: monospace;">ratsimp</span><span style="font-family: Helvetica,Arial,sans-serif;"> is used for rational expressions.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i8)
+  </span></td>
+  <td><span class="input">
+A : (sec(x))^2 - 1;<br>
+B : trigsimp(A);<br>
+integrate(A, x, -1, 1);<br>
+integrate(B, x, -1, 1);  float(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_72.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>As the output indicates, <span style="font-style: italic;">Maxima</span> could have found this integral without
+the instruction </span><span style="font-family: monospace;">trigsimp</span><span style="font-family: Helvetica,Arial,sans-serif;">, but one should be aware that it is available.
+This instruction causes <span style="font-style: italic;">Maxima</span> to use the Pythagorean identities to
+simplify an expression. An instruction like </span><span style="font-family: monospace;">ratsimp</span><span style="font-family: Helvetica,Arial,sans-serif;"> would have no
+effect here. </span><span style="font-family: Helvetica,Arial,sans-serif;">
+The units in <span style="font-style: italic;">Maxima</span> are radians, so <span style="font-style: italic;">tan(1)</span> is the tangent when <span style="font-style: italic;">x = 1</span> radian, or&nbsp;</span><big>π</big><span style="font-family: Helvetica,Arial,sans-serif;">/180 degrees.
+</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The note "Principal Value" indicates how <span style="font-style: italic;">Maxima</span> approaches this
+problem. "Principal Value" refers to the Cauchy principal value, which
+is a finite integral of a function about a point <span style="font-style: italic;">c</span>, within the range of
+integration. It is the limit of the function shown below as epsilon
+approaches zero from above.</span><span style="font-family: Helvetica,Arial,sans-serif;"></span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i13)
+  </span></td>
+  <td><span class="input">
+kill(f)$<br>
+limit('integrate(f(x), x, a, c - %epsilon)) + 'integrate(f(x), x, c + %epsilon, b);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_73.png">
+
+
+
+<!-- Subsection cell -->
+
+
+<br><br><h3>
+  4.5 Volumes by Cylindrical Shells; Using Trigreduce and Trigexpand
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+Let find the volume of the solid generated by revolving the region
+between <span style="font-style: italic;">y = cos x</span>, <span style="font-style: italic;">y = 0</span>&nbsp; and the lines <span style="font-style: italic;">x = 0</span>, <span style="font-style: italic;">x =&nbsp;</span></span><big>π</big><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">/2</span> about the<span style="font-style: italic;">
+x</span>-axis. Using the shell method, the integral to be calculated is as
+below:</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i15)
+  </span></td>
+  <td><span class="input">
+A : x*cos(x)^-1;<br>
+B: trigreduce(z);<br>
+integrate(z, x, 0, %pi/2);<br>
+integrate(x*cos(x)^-1, x, 0, %pi/2);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_74.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>This is a difficult integral that requires integration by parts. The disk method yields an integral that can be evaluated:
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i19)
+  </span></td>
+  <td><span class="input">
+[%pi*'integrate(cos(x)^2, x, 0, %pi/2), " = ", <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%pi*integrate(cos(x)^2,
+x, 0, %pi/2)] ; </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_75.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>If you are working problems like this, you will need to recall double/half angle formulas. <span style="font-style: italic;">Maxima</span> can help.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i20)
+  </span></td>
+  <td><span class="input">
+halfangles: true$<br>
+A: cos(x)^2;<br>
+B: trigreduce(A);<br>
+C: trigexpand(B);<br>
+D: trigsimp(C);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_76.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>This dialogue shows that </span><span style="font-family: monospace;">trigreduce</span><span style="font-family: Helvetica,Arial,sans-serif;"> tells <span style="font-style: italic;">Maxima</span> to use the half-angle
+formulas to simplify an expression and</span><span style="font-family: monospace;">&nbsp;trigexpand</span><span style="font-family: Helvetica,Arial,sans-serif;"> tells <span style="font-style: italic;">Maxima</span> to
+use the double-angle formulas.
+</span><br>
+
+
+<!-- Section cell -->
+
+
+<br><h2><a class="mozTocH2" name="mozTocId383537"></a>
+ 5 Some Numerical Methods in Maxima
+</h2>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">In many
+cases we cannot find an analytical solution to a problem (one might not
+exist). <span style="font-style: italic;">Maxima</span> offers a range of numerical methods for finding
+approximate values in such cases.</span>
+<br>
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH3" name="mozTocId184858"></a>
+  5.1 Solving Equations</h3><span style="font-family: Helvetica,Arial,sans-serif;">Finding solutions for equations or systems of equations is an important application </span><span style="font-family: Helvetica,Arial,sans-serif;">of numerical analysis. Consider the equation below, for which<br></span><span style="font-family: monospace;">solve</span><span style="font-family: Helvetica,Arial,sans-serif;"> does not return a useful analytical solution.</span>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i25)
+  </span></td>
+  <td><span class="input">
+f(x, a, b) := x^a - b*log(x);<br>
+[a0, b0] : [0.8, 5]$<br>
+solve(f(x, a0, b0), x);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <br><img alt="Result" src="CalcTutorial_img/CalcTutorial_77.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+When using numerical methods to find roots, one should graph the
+expression(s) to be solved. The graph can show whether multiple roots
+are to be expected over the relevant range. It can also guide the
+selection of guesses that serve as initial values for iterative search
+methods.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The graph below indicates that a roots occurs around x = 0 and for around x = 40. The function is not defined for x = 0.</span>
+<span style="font-family: Helvetica,Arial,sans-serif;">Why?</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i28)
+  </span></td>
+  <td><span class="input">
+wxdraw2d( xaxis = true, yaxis = true,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;explicit(f(x, a0, b0), x, -10, 50))$
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_78.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The </span><span style="font-family: monospace;">find_root</span><span style="font-family: Helvetica,Arial,sans-serif;"> command is used first. This command requires the
+expression to be evaluated, the expression's argument, and the interval
+endpoints. If the sign of <span style="font-style: italic;">f(x)</span> is the same at both endpoints, an error
+message results</span>.
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i29)
+  </span></td>
+  <td><span class="input">
+find_root(f(x, a0, b0), x, 1, 50);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_79.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+Shorten the interval to [.0001, 10]. (Why not [0, 10]?) The first root is x = 1.2750,&nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">approximately. The resulting <span style="font-style: italic;">f(x, a0, b0)</span> is nearly zero. The discrepancy reflects &nbsp;</span><span style="font-family: Helvetica,Arial,sans-serif;">error in the search process.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i30)
+  </span></td>
+  <td><span class="input">
+find_root(f(x, a0, b0), x, 0.001, 10);<br>
+f(%, a0, b0);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_80.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The second root -- <span style="font-style: italic;">x = 1.2749</span>, approximately -- is found the same way.
+Again, the resulting <span style="font-style: italic;">f(x, a0, b0</span>) is approximately 0; 0.0 is a
+floating-point approximation of 0.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i32)
+  </span></td>
+  <td><span class="input">
+find_root(f(x, a0, b0), x, 30, 50);<br>
+f(%, a0, b0);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_81.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>An alternative approach is to use the Newton search process. Doing so requires </span><span style="font-family: Helvetica,Arial,sans-serif;">loading the module </span><span style="font-family: monospace;">newton1</span><span style="font-family: Helvetica,Arial,sans-serif;">. This is the module for applying the Newton process </span><span style="font-family: Helvetica,Arial,sans-serif;">to a single equation. The </span><span style="font-family: monospace;">newton</span><span style="font-family: Helvetica,Arial,sans-serif;"> command differs slightly from </span><span style="font-family: monospace;">find_roo</span><span style="font-family: Helvetica,Arial,sans-serif;">t. It </span><span style="font-family: Helvetica,Arial,sans-serif;">requires the expression, the expression's argument, an initial guess of the value, </span><span style="font-family: Helvetica,Arial,sans-serif;">and a tolerance level. The process works better if the guess is near to the root, and </span><span style="font-family: Helvetica,Arial,sans-serif;">this is where the graph provides guidance.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i34)
+  </span></td>
+  <td><span class="input">
+load(newton1)$<br>
+newton(f(x, a0, b0), x,  1, .0000000001);<br>
+newton(f(x, a0, b0), x, 40, .0000000001);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_82.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Newton's method can be extended to multiple equations. As long as the
+number of equations (and unknowns) is less than 4, graphing can still
+be used to guide the search process. Consider the two equations below.
+To avoid three dimensional graphs, we use the </span><span style="font-family: monospace;">implicit</span><span style="font-family: Helvetica,Arial,sans-serif;"> command within
+</span><span style="font-family: monospace;">draw2d</span><span style="font-family: Helvetica,Arial,sans-serif;">. The graph shows <span style="font-family: Helvetica,Arial,sans-serif; font-style: italic;">x, y</span> pairs for which <span style="font-style: italic;">f(x, y) = 0</span> and for which
+<span style="font-style: italic;">g(x, y) = 0</span>. Because<span style="font-style: italic;"> f(0, y)</span> is not defined, the implicit function is
+discontinuous at <span style="font-style: italic;">x = 0</span>. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The graph shows that <span style="font-style: italic;">f(x, y) = g(x, y) = 0</span> at two values of <span style="font-style: italic;">x</span>: just over -1.0 , and just over +1.0.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i37)
+  </span></td>
+  <td><span class="input">
+kill(all)$   <br>
+f(x,y) := 2*(3^x) - y/x - 5;           g(x,y) := x + 2^y - 4;<br>
+wxdraw2d( <br>
+key = "f(x, y)", implicit(f(x,y), x, -2, 5, y, -2, 5), <br>
+color = green, key = "g(x, y)",<br>
+implicit(g(x,y), x, -2, 5, y, -2, 5)       )$
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_83.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>To determine the roots for multiple expressions, we load the </span><span style="font-family: monospace;">mnewton</span><span style="font-family: Helvetica,Arial,sans-serif;">
+module and enter the </span><span style="font-family: monospace;">mnewton</span><span style="font-family: Helvetica,Arial,sans-serif;"> command. This command's arguments consist
+of three lists: a list of expressions, a list of variables, and a list
+of guesses. The tolerance level must be set explicitly if one wishes to
+use a value other than the default.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+Because the graph identifies two<span style="font-style: italic;"> x, y</span> pairs that are roots for both equations, we execute </span><span style="font-family: monospace;">mnewton</span><span style="font-family: Helvetica,Arial,sans-serif;"> twice.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i4)
+  </span></td>
+  <td><span class="input">
+load(mnewton)$<br>
+soln1: mnewton( [f(x, y), g(x, y)], [x, y], [-1, 2]  );<br>
+soln2: mnewton( [f(x, y), g(x, y)], [x, y], [1, 1.5]  );
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_84.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br><br>We extract the critical values above and check the function values. The
+solutions are expressed as embedded lists, so extracting these values
+requires double indices (even though the top-level lists contains only
+one item). </span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i7)
+  </span></td>
+  <td><span class="input">
+[x1, y1] :  [rhs(soln1[1][1]), rhs( soln1[1][2])    ];<br>
+[x2, y2]:  [rhs(soln2[1][1]), rhs( soln2[1][2])     ];<br>
+[ f(x1, y1), g(x1, y1) ];<br>
+[f(x2, y2), g(x2, y2)] ;
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_85.png">
+
+
+
+<!-- Subsection cell -->
+
+
+<br><br><h3><a class="mozTocH3" name="mozTocId712540"></a>
+  5.2 Recursive Functions
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+It may be a good exercise to define your own <span style="font-style: italic;">Maxima</span> function which
+implements Newton's method. Doing so shows a way to deal with recursive
+functions in <span style="font-style: italic;">Maxima</span>.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i11)
+  </span></td>
+  <td><span class="input">
+kill(all)$<br>
+my_newt(f,guess,prec):= block([f_x,der_x,x_new],<br>
+f_x : f(guess),<br>
+der_x : subst(guess,x, diff(f(x),x)),<br>
+x_new : guess - f_x/der_x,<br>
+if abs(x_new - guess) &lt; prec then return(guess)<br>
+else my_newt(f,x_new,prec))$<br>
+g: lambda([x],x^2 -2);<br>
+my_newt(g,1.5,.0001);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_86.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>This definition of </span><span style="font-family: monospace;">my_newt</span><span style="font-family: Helvetica,Arial,sans-serif;"> is recursive. That is, the definition of the
+function calls the function itself until the desired precision is
+attained. From the viewpoint of program clarity this is the method of
+choice. When calling </span><span style="font-family: monospace;">my_newt</span><span style="font-family: Helvetica,Arial,sans-serif;">, a lambda definition of function must be
+used because the name of a function <span style="font-style: italic;">f </span>is being passed to </span><span style="font-family: monospace;">my_newt</span><span style="font-family: Helvetica,Arial,sans-serif;">.
+</span><br>
+
+
+<!-- Subsection cell -->
+
+
+<br><h3><a class="mozTocH3" name="mozTocId912826"></a>
+  5.3 Numerical Integration
+</h3>
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;">Maxima</span>
+provides a set of options for conducting numerical integration. To
+illustrate two of these, we use the function below. It can be
+integrated, so the numerical approach need not be taken, but we use it
+as a basis for comparison.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i4)
+  </span></td>
+  <td><span class="input">
+kill(all)$         f(x) := x^(1/2)*log(1/x)$<br>
+wxdraw2d(  explicit(f(x), x, 0, 1)   )$<br>
+integrate(f(x),  x, 0, 1);<br>
+float(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_87.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;">
+<br>A relatively simple method to implement is that of Romberg. <span style="font-style: italic;">Maxima</span>'s
+</span><span style="font-family: monospace;">romberg</span><span style="font-family: Helvetica,Arial,sans-serif;"> command has the same syntax as the </span><span style="font-family: monospace;">integrate</span><span style="font-family: Helvetica,Arial,sans-serif;"> command. For
+the&nbsp; function above, </span><span style="font-family: monospace;">romberg</span><span style="font-family: Helvetica,Arial,sans-serif;"> cannot evaluate the integral over the entire
+range because it cannot deal with <span style="font-style: italic;">f(0)</span>. We use <span style="font-style: italic;">f(1e-100)</span> instead. The
+<span style="font-family: monospace;">romberg</span> command can handle values as small as </span><span style="font-family: monospace;">f(1e-320)</span><span style="font-family: Helvetica,Arial,sans-serif;"> or so. For this
+function the </span><span style="font-family: monospace;">romberg</span><span style="font-family: Helvetica,Arial,sans-serif;"> command yields a solution with errors after the
+fourth decimal place. Confirm that moving the beginning value closer to
+zero by using 1e-300 does not appreciably change the result.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i5)
+  </span></td>
+  <td><span class="input">
+romberg(f(x),  x, 1e-100 ,  1 );
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_88.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>A more
+sophisticated method (set of methods, actually) is available in
+QUADPACK. We consider one example, using the command </span><span style="font-family: monospace;">quad_qag</span><span style="font-family: Helvetica,Arial,sans-serif;">. This
+command contains at least five arguments. (The <span style="font-style: italic;">Maxima Manual</span> describes
+other, optional arguments.) The first four are the same as those of
+</span><span style="font-family: monospace;">integrate</span><span style="font-family: Helvetica,Arial,sans-serif;"> and </span><span style="font-family: monospace;">romberg</span><span style="font-family: Helvetica,Arial,sans-serif;">. The fifth argument is a key that determines
+details of the search method and depends on the user's knowledge of the
+function's characteristics. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+In this example </span><span style="font-family: monospace;">quad_qag</span><span style="font-family: Helvetica,Arial,sans-serif;"> provides a closer approximation to the
+correct value than does </span><span style="font-family: monospace;">romberg</span><span style="font-family: Helvetica,Arial,sans-serif;">. The other three pieces of output are
+these: the estimated error of the method (quite small here), the number
+of iterations taken, and an error code (0 means no errors).</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i6)
+  </span></td>
+  <td><span class="input">
+quad_qag (f(x), x, 0, 1, 3);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_89.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The Romberg technique can be applied to multidimensional integration,
+as in this example. The </span><span style="font-family: monospace;">assume(x &gt; 0)</span><span style="font-family: Helvetica,Arial,sans-serif;"> command is entered to avoid dealing
+with a dialog. Remove this line and determine the values once more.</span>
+<br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i7)
+  </span></td>
+  <td><span class="input">
+g(x, y) := x*y / (x + y);<br>
+estimate : romberg (romberg (g(x, y), y, 0, x/2), x, 1, 3);<br>
+assume(x &gt; 0)$<br>
+integrate (integrate (g(x, y), y, 0, x/2), x, 1, 3); float(%);
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_90.png">
+
+
+
+<!-- Subsection cell -->
+
+
+<br><br><h3><a class="mozTocH3" name="mozTocId577290"></a>
+  5.4 Numerical Solution of ODEs
+</h3>
+
+
+<!-- Text cell -->
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;">Some ordinary differential equations (ODEs), or systems of ODEs, cannot
+be solved analytically. Numerical solutions of these systems can
+provide insights that are otherwise not attainable. A classic example
+is the Lorenz equations that were used to represent the convective
+motion of a fluid cell that is being warmed from below and cooled from
+above. This same set of equations can be applied to the analysis of
+dynamos and laser light. Numerous books analyze this system's
+behavior, most famously James Gleck's <span style="font-style: italic;">Chaos</span>.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The equations that comprise this system are named </span><span style="font-family: monospace;">dxdt </span><span style="font-family: Helvetica,Arial,sans-serif;">(for <span style="font-style: italic;">dx/dt</span>),
+</span><span style="font-family: monospace;">dydt</span><span style="font-family: Helvetica,Arial,sans-serif;">, and </span><span style="font-family: monospace;">dzdt</span><span style="font-family: Helvetica,Arial,sans-serif;">. The variable t is time. The parameters <span style="font-style: italic;">a, b</span>, and <span style="font-style: italic;">c</span> are
+all positive: <span style="font-style: italic;">a</span> is called the Prandtl number, <span style="font-style: italic;">b</span> is called the Rayleigh
+number, and <span style="font-style: italic;">c</span> is a factor of proportionality. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The values of <span style="font-style: italic;">x, y</span>, and <span style="font-style: italic;">z</span> are not coordinates in physical space. Rather
+the value of <span style="font-style: italic;">x</span> is proportional to the intensity of convective motion,
+and <span style="font-style: italic;">y</span> is proportional to the temperature difference between ascending
+and descending&nbsp;currents. Finally,<span style="font-style: italic;"> z</span> is proportional to the distortion of
+the vertical temperature profile from linearity. Of course, <span style="font-style: italic;">x, y</span>, and <span style="font-style: italic;">z</span>
+have quite different interpretations in other applications of this set
+of equations.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i12)
+  </span></td>
+  <td><span class="input">
+kill(all)$         a: 10$ b: 28$ c: 2.667$      <br>
+dxdt : a*(y - x);      dydt: x*(b - z) - y;    dzdt : x*y - c*z;
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_91.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>The cell
+below shows how <span style="font-style: italic;">Maxima</span> uses the Runge-Kutte (</span><span style="font-family: monospace;">rk</span><span style="font-family: Helvetica,Arial,sans-serif;">) method to provide
+numerical solutions for the values of x, y, and z at points in time.
+The results of 1000 rk solutions are placed into a list named data. The
+</span><span style="font-family: monospace;">rk</span><span style="font-family: Helvetica,Arial,sans-serif;"> command has these arguments: the name(s) of the expression(s), the
+name(s) or the variable(s), the initial value(s) or the variable(s),
+and the domain over which the solution is to occur. The domain itself
+has four elements: the name of the independent variable (time, here),
+that variable's initial value, its final value, and the increment. In
+the example below time ranges from<span style="font-style: italic;"> t = 0</span> to<span style="font-style: italic;"> t = 100</span>, with increments of<span style="font-style: italic;">
+0.01</span>, so Maxima produces a list of 10,000 sets of values.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+The first, second, 9999th, and 10000th lists of values appear as
+output. Each of these four items shows the time, the <span style="font-style: italic;">x</span> value, the <span style="font-style: italic;">y</span>
+value, and the <span style="font-style: italic;">z</span> value.
+</span><br>
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i7)
+  </span></td>
+  <td><span class="input">
+ fpprintprec:5$<br>
+data: rk([dxdt, dydt, dzdt],[x,y,z],[-15,20,-5],[t,0,100,0.01])$<br>
+matrix( ["time", "x", "y", "z"], data[1],    data[2],   ["...", "...","...","..."],<br>
+data[length(data) - 1],  data[length(data)] );
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_92.png">
+
+
+
+<!-- Text cell -->
+
+
+<br><span style="font-family: Helvetica,Arial,sans-serif;"><br>Below, we
+create a list of the 10,000 values of variables<span style="font-style: italic;"> x, y</span>, and <span style="font-style: italic;">z</span> and show
+their interactions. The graph shows that the system does not tend
+toward any single point, rather it oscillates around two points. This
+points are called <span style="font-style: italic;">strange attractors</span>. The <span style="font-style: italic;">y</span> axis is labeled; the
+positions of the <span style="font-style: italic;">x</span> and<span style="font-style: italic;"> z</span> labels can be deduced. </span><span style="font-family: Helvetica,Arial,sans-serif;">The graph is
+produced with the </span><span style="font-family: monospace;">points</span><span style="font-family: Helvetica,Arial,sans-serif;"> option.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+Suggested exercise: change one of the initial values in the </span><span style="font-family: monospace;">rk</span><span style="font-family: Helvetica,Arial,sans-serif;"> command and trace the
+effects of that change. Make the change small. For example, let the
+new initial value of <span style="font-style: italic;">x</span> be 15.1 or 14.9 rather than 15.&nbsp;</span><br style="font-family: Helvetica,Arial,sans-serif;">
+<br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+It can be instructive to remove the <span style="font-family: Courier New,Courier,monospace;">wx</span> from the <span style="font-family: Courier New,Courier,monospace;">draw</span>
+command and execute the command again. This produces a<span style="font-style: italic;"> gnuplot</span> window
+that lets you rotate the graph. This window must be closed before
+<span style="font-style: italic;">wxMaxima</span> can proceed to the next command.
+</span><br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+<!-- Code cell -->
+
+
+<br></div><table style="text-align: left; margin-left: 0px; margin-right: 0px;"><tbody><tr><td>
+  <span class="prompt">
+(%i10)
+  </span></td>
+  <td><span class="input">
+uL: makelist([data[i][2],data[i][3],data[i][4]],i,1,length(data))$<br>
+wxdraw3d(view = [36, 336], ylabel = "y", xaxis=true, yaxis=true,  points(uL))$
+  </span></td>
+</tr></tbody></table><div style="text-align: justify;">
+  <br>
+  <img alt="Result" src="CalcTutorial_img/CalcTutorial_93.png">
+
+
+ </div><br><span style="font-family: Helvetica,Arial,sans-serif;">Based on:</span><br><div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif; font-style: italic;">A Maxima Guide for Calculus Students</span><br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+c January 2, 2007 by </span><span style="font-family: Helvetica,Arial,sans-serif;">Moses Glasner</span><br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+e-mail: glasner AT math DOT psu DOT edu</span><br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+Address:Department of Mathematics</span><br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+Pennsylvania State University</span><br style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif;">
+University Park, PA 16802</span><br><br><small><br>Created with <a href="http://wxmaxima.sourceforge.net/">wxMaxima</a>.<br>Edited with <a href="http://kompozer.net/" target="_blank">Kompozer</a>.<br>Converted to PDF with Winnovative <a href="http://www.winnovative-software.com/?from_free_app=1">HTML to PDF Converter</a>.</small>
+
+ </div></body></html>

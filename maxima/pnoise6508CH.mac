@@ -1,0 +1,217 @@
+/*
+
+05/19/2014
+
+This file is taken from pnoiseExample.mac. It is intended for the
+TC6508 Channel PLL. The channel PLL has a nominal frequency of
+10.625GHz, and a nominal kvco of 1.92GHz/V, and -110dBc/Hz @ 1MHz.
+
+We will be a little conservative on phase noise, and put -105dBc/Hz @ 1MHz
+
+Thus for the model we have :
+
+  fc = 10.625e9
+  kv = 2.0e9
+  Lo = -105 @ 1.0e6
+
+The phase noise should not depend on kv, but it is easier to think about.
+We can then scale it so that it is independent of kv.
+
+Notice we also calculate the noise density was white noise density, and then
+low pass filter it, and then add three poles together, and then add another
+correction factor at the end. The use of this correction factor, and scaling by
+kv, keep the phase noise calculation more intuitive to understand.
+
+*/
+
+/*
+
+First we have a classic VCO, with 1/f frequency noise, which
+means it has 1/f^3 phase noise. If we have Lo phase noise at
+fo, and then we integrate from f1 to f2, we come up with a
+certain amount of ps of integrated phase noise, which is "jval".
+
+Since it is hard to create 1/f noise in a simulation, we create
+a white noise source that is low pass filtered with a corner of fo.
+This noise has a noise density of Vo at low frequencies.
+We first set Vo so that it would give the right phase noise at fo
+if it were not low pass filtered. Obviously, the phase noise will
+be down by a factor of 2 at fo because of the low pass filter. We'll
+compensate for that later.
+
+I'm going to create three of these low pass filtered noise sources,
+one at fo, and one at (fo * alf), and one at (fo / alph).
+
+I'll add up the total noise of all three of these over the range of
+f1 to f3, and then I'll compare it to the actual noise due to a smooth
+1/f noise source, and calculate a correction factor.
+
+The three noise values will be Va, Vb, Vc, at frequencies Fa, Fb, Fc.
+The jitter of each one is Ja, Jb, Jc.
+(Va, Vb, Vc includes the correction factor).
+
+Note Va is the noise density per root Hz. This is going to be simulated
+using a random variable with RMS value sigma. The value you choose for sigma
+is related to sample rate of your system. The total noise you would expect to
+have from 0 to fs/2 is
+
+  (Va^2 * fs/2) = sigma^2
+
+From this you see that sigma = Va * sqrt(fs/2);
+
+We thus calculate SigA, SigB, SigC;
+
+
+*/
+
+
+/* fs is the sample rate noise is calculated */
+
+fs  : 10.0e9;
+
+fc : 10.625e9;
+kv : 2.0e9;
+
+Lo : -105.0;
+fo : 1.0e6;
+
+Fa : 100e3, numer;
+Fb : 1.0e6, numer;
+Fc : 10.0e6, numer;
+
+f1 : 100e3, numer;
+f2 : 10e6, numer;
+
+Ro : 10^(Lo / 10.0);
+
+R(f) := Ro * (fo / f)^3;
+
+p2 : integrate(2 * R(x), x, f1, f2);
+
+jval : sqrt(p2) / (2.0 * %pi * fc), numer;
+
+
+/*
+
+Vo = noise density at fo
+PHI(f) = phase error in radians at frequency f
+
+|V(f)|^2 = Vo^2 * 1.0 / (1.0 + (2.0 * %pi * f)^2)
+
+|PHI(f)|^2 = ((2.0 * %pi * kv) / (2.0 * %pi * f))^2 * |V(f)|^2
+           = (kv * Vo)^2 / (f^2 * (1.0 + (2.0 * %pi * f)^2))
+
+*/
+
+
+Ra : R(Fa), numer;
+Rb : R(Fb), numer;
+Rc : R(Fc), numer;
+
+Va : (2.0 * Fa / kv) * sqrt(Ra);
+Vb : (2.0 * Fb / kv) * sqrt(Rb);
+Vc : (2.0 * Fc / kv) * sqrt(Rc);
+
+RKa(f) := 0.5 * (kv * Va / f)^2 / (1.0 + (f / Fa)^2);
+RKb(f) := 0.5 * (kv * Vb / f)^2 / (1.0 + (f / Fb)^2);
+RKc(f) := 0.5 * (kv * Vc / f)^2 / (1.0 + (f / Fc)^2);
+
+
+
+PKa : integrate(2 * RKa(x), x, f1, f2);
+
+PKb : integrate(2 * RKb(x), x, f1, f2);
+
+PKc : integrate(2 * RKc(x), x, f1, f2);
+
+
+JKa : sqrt(PKa) / (2.0 * %pi * fc), numer;
+
+JKb : sqrt(PKb) / (2.0 * %pi * fc), numer;
+
+JKc : sqrt(PKc) / (2.0 * %pi * fc), numer;
+
+
+
+/* calculate a correction factor so the total integrated jitter matches ideal */
+
+KG : jval / sqrt(JKa^2 + JKb^2 + JKc^2);
+
+Va : Va * KG;
+Vb : Vb * KG;
+Vc : Vc * KG;
+
+
+
+/* double check. This time KG should come out 1.0 */
+
+PKa : integrate(2 * RKa(x), x, f1, f2);
+
+PKb : integrate(2 * RKb(x), x, f1, f2);
+
+PKc : integrate(2 * RKc(x), x, f1, f2);
+
+
+JKa : sqrt(PKa) / (2.0 * %pi * fc), numer;
+
+JKb : sqrt(PKb) / (2.0 * %pi * fc), numer;
+
+JKc : sqrt(PKc) / (2.0 * %pi * fc), numer;
+
+
+
+KG : jval / sqrt(JKa^2 + JKb^2 + JKc^2);
+
+
+
+/* for white noise sigma = noise_density_per_rtHz * sqrt(fs/2) */
+
+SigA : Va * sqrt(fs/2.0);
+
+SigB : Vb * sqrt(fs/2.0);
+
+SigC : Vc * sqrt(fs/2.0);
+
+
+TauA : 1.0 / (2.0 * %pi * Fa);
+
+TauB : 1.0 / (2.0 * %pi * Fb);
+
+TauC : 1.0 / (2.0 * %pi * Fc);
+
+
+FVec : [Fa, Fb, Fc];
+VVec : [Va, Vb, Vc];
+JVec : [JKa, JKb, JKc];
+SVec : [SigA, SigB, SigC], numer;
+TVec : [TauA, TauB, TauC], numer;
+
+RJ(f) := (RKa(f) + RKb(f) + RKc(f));
+LJ(f) := 10 * log(RJ(f)) / log(10);
+LE(f) := 10 * log(R(f)) / log(10);
+
+LA(f) := 10 * log(RKa(f)) / log(10);
+
+LB(f) := 10 * log(RKb(f)) / log(10);
+
+LC(f) := 10 * log(RKc(f)) / log(10);
+
+
+SVecStr : "SVec";
+
+plot2d([LE(x), LJ(x), LA(x), LB(x), LC(x)], [x, 10e3, 100e6], [logx], [legend, "1/f", "3-pole approx", "100k", "1M", "10M"], [xlabel, "Frequency"], [ylabel, "L(f)"]);
+
+
+stringout("/Users/warwar/Desktop/Open/noiseValCH.txt",
+  ["SVec", SVec], "",
+  ["TVec", TVec], "",
+  ["VVec", VVec], "",
+  ["FVec", FVec], "",
+  ["JVec", JVec], "",
+  ["jval", jval], "",
+  ["KG",   KG],   "",
+  ["fs",  fs]);
+
+
+
+

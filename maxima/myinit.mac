@@ -1,0 +1,27 @@
+pngStr0 : "png size 800,600 font 'C:\\Windows\\Fonts\\ShelbysFont.ttf' 12";
+
+pngStr1 : "png size 800,600 font 'C:\\Windows\\Fonts\\comic.ttf' 16";
+
+maxima_tempdir : "C:\\Users\\warwar\\Desktop\\Open";
+
+file_search_maxima : append(file_search_maxima, ["C:/Users/warwar/Desktop/Open/###.{mac,max}"]);
+
+
+/* **************************************** */
+/* plot stuff : plotPng(sin(x), [x, 0, 1]); */
+/*              quickPlot(sin(x), 0, 4);    */
+/*                                          */
+/* (note - I had to put hardcopy of         */
+/*         i_view32.exe into C:\Windows" )  */                            
+/* **************************************** */
+
+plotPng(vFunc, vRange) := plot2d(vFunc, vRange, [gnuplot_term, pngStr0]);
+
+dd() := system("i_view32.exe C\:\\Users\\warwargr\\Desktop\\Open\\maxplot.png");
+
+quickPlot(jFunc, xmin, xmax) := print(plotPng(jFunc, [x, xmin, xmax]), dd());
+
+
+
+
+

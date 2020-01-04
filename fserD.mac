@@ -1,0 +1,33 @@
+load(fourie);
+
+f(t) := exp(%i * 3 * %pi * t / 4) + exp(%i * %pi * t / 4);
+tper : 8;
+
+ans : fourier(f(t), t, tper/2);
+
+bans : ''ans;
+
+
+eans    :  ''(bans[1]);
+
+cans(n) := ''([bans[2],bans[3]]);
+
+dans(n) := ''limit(cans(m), m, n);
+
+shan : ''f(t);
+printf(true, "FUNCTION : ~s~%", shan);
+printf(true, "PERIOD   : ~f~%", tper);
+printf(true, "RANGE    : [-~f to ~f]~%", tper/2, tper/2);
+
+i : 0;
+printf(true, " ~d : ~s~%", i, eans);
+
+for i: 1 step 1 while (i < 10) do
+  (jack : ''dans(i),
+   printf(true, " ~d : ~s~%", i, jack));
+
+printf(true, "Done!~%");
+
+
+
+

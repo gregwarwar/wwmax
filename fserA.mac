@@ -1,0 +1,30 @@
+load(fourie);
+
+f(t) := 3 + 4*cos(2*t) + sqrt(2) * sin(t);
+
+ans : fourier(f(t), t, %pi);
+
+bans : ''ans;
+
+
+eans    :  ''(bans[1]);
+
+cans(n) := ''([bans[2],bans[3]]);
+
+dans(n) := ''limit(cans(m), m, n);
+
+shan : ''f(t);
+printf(true, "FUNCTION : ~s~%", shan);
+
+i : 0;
+printf(true, " ~d : ~s~%", i, eans);
+
+for i: 1 step 1 while (i < 5) do
+  (jack : ''dans(i),
+   printf(true, " ~d : ~s~%", i, jack));
+
+printf(true, "Done!~%");
+
+
+
+

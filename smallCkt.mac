@@ -1,0 +1,16 @@
+
+
+eq1 : (Va0-Vi0)/R1 + C1*(Va1-Va0)/h + (Va0-Vo0)/R2 = 0;
+
+eq2 : (Vo0-Va0)/R1 + C2*(Vo1-Vo0)/h = 0;
+
+ans : solve([eq1, eq2], [Va1, Vo1]);
+
+EQ1 : expand((ans[1][1]));
+
+EQ1 : expand((ans[1][2]));
+
+EQ1 : fortran(ratsimp((ans[1][1])));
+
+EQ2 : fortran(ratsimp((ans[1][2])));
+

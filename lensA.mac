@@ -1,0 +1,26 @@
+/*
+  Solution A
+
+   Assume I have a target with diameter 16m a distance of 10m away
+
+   I want to map this to a detector 1.0cm from the lens with diameter of 8mm
+
+   This implies a magnification of M = 8mm/16m = 5.0e-4
+
+   I now solve the equation for the focal length of the lens I need
+
+*/
+
+eq1 : 1/d + 1/D = 1/f;
+
+eq2 : d = 0.01;
+
+eq3 : D = 10.0;
+
+eq4 : M = 8e-3/16;
+
+
+
+ans : solve([eq1, eq2, eq3, eq4], [d, D, M, f]);
+
+

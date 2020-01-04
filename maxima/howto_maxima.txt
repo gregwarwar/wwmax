@@ -1,0 +1,7 @@
+I installed a fresh version of gnuplot on my PC
+I found that I can get maxima to use it if I 
+
+gnuplot_command : "c:\\Program\ Files\\gnuplot\\bin\\gnuplot.exe";
+
+plot2d([sin(x)], [x,-5,5], [gnuplot_default_term_command, "set term qt"])$
+

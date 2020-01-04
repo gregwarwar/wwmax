@@ -1,0 +1,161 @@
+This file : howto_maxima_basic.txt - 2017/02/23 - gcw
+
+1. Install maxima using the program setup program
+
+   maxima-sbcl-5.36.1.exe
+
+
+2. Create a working directory somewhere convenient
+
+   for example C:\Users\warwargr\Desktop\max
+
+
+3. Create a maxima startup directory in your %HOME% directory
+
+   echo %HOME%
+   cd C:\Users\warwargr\
+   mkdir maxima
+
+4. Create the text file C:\Users\warwargr\maxima\myinit.mac
+
+   /* *********************************************** */
+   /* This file : C:\Users\warwargr\maxima\myinit.mac */ 
+   /* *********************************************** */
+
+   maxima_tempdir : "C:\\Users\\warwargr\\Desktop\\max";
+
+   file_search_maxima : append(file_search_maxima, ["C:/Users/warwargr/Desktop/max/###.{mac,max}"]);
+
+   /* *********************************************** */
+
+
+5. Start up wxMaxima
+
+   In the command window type 
+
+     load("myinit.mac")
+
+   Hit "Shift-Enter" to submit this input
+
+   (you can resubmit a command by putting cursor anywhere on line and hit "Shift-Enter")
+
+
+
+6. Copy and paste one line at a time (and hit Shift-Enter after each one)
+
+
+   eq1 : I = Io * exp((q*V)/(k*T));
+
+   ans : solve(eq1, V);
+
+   ans[1];
+
+   rhs(ans[1]);
+
+   g(x) := x^2 + 2*x + -4;
+
+   plot2d(g(x), [x, -3, 3]);
+
+
+   V(I) := ''(rhs(ans[1]));
+
+   V(I);
+
+   V(Hello);
+
+
+   Io : 100.0e-9;
+
+   V(I);
+
+
+   k : 1.38062e-23;
+
+   T : (273.15 + 25);
+
+   q : 1.60219e-19;
+
+   V(I);
+
+   V(1.0e-3);
+
+  
+   plot2d(V(I), [I, 1e-9, 1.0e-3]);
+
+   
+   plot2d(V(I), [I, 1e-9, 1.0e-3], [legend, "Diode Voltage"], [xlabel, "Diode Current"], [ylabel, "Voltage"]);
+
+
+
+   /* make a CSV file voltage vs. current */
+   /* sweep current from 1.0e-9 to 1.0e-3 */
+   /* sweep 200 points log scale          */
+
+
+   IDmin : 1.0e-9;
+
+   IDmax : 1.0e-3;
+
+   NSteps : 20;
+
+   AMult : exp(log(IDmax/IDmin)/(NSteps-1));
+
+
+   /* create lists initialized to 0         */
+   /* list goes for xval[1] to xval[NSteps] */
+   xval : makelist(0, NSteps);
+   yval : makelist(0, NSteps);
+
+   ID : IDmin;
+
+   for i : 1 step 1 while i <= NSteps do (
+
+     VD : V(ID),
+     xval[i] : ID,
+     yval[i] : VD,
+
+     ID : ID * AMult
+
+   );
+
+
+   plot2d([discrete, xval, yval], [style, points]);
+    
+   plot2d([V(I), [discrete, xval, yval]], [I, 1.0e-9, 1.0e-3], [style, lines, points]);
+
+   fp : openw("c:\\Users\\warwargr\\Desktop\\max\\data.csv");
+
+   printf(fp, "* Date for Diode Voltage vs. Current~%");
+
+   for i : 1 step 1 while i <= NSteps do (
+
+     printf(fp, "  ~0,8e, ~0,8e~%", xval[i], yval[i])
+
+   );
+
+   close(fp);
+
+
+
+
+
+
+
+ 
+ 7. The reference manual is in this directory (maximaManual.pdf)
+
+ 8. A wxMaxmia tutorial can be run by double-clicking it (MaximaTutorial.wxm)
+
+
+
+
+
+
+
+
+
+
+
+
+   
+

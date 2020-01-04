@@ -1,0 +1,194 @@
+* You need to make sure to preserve the directory
+
+    C:\Users/warwar/maxima/
+
+    It has a lot of usefule *.mac files
+
+  Also, see the details about some quick plotting functions in
+
+    myinit.mac
+
+
+* I put my startup stuff into :
+
+    C:/Users/warwar/maxima/myinit.mac
+
+  When you start up maxima, the first command should be
+
+    load("myinit.mac");
+
+  This files sets a lot of important stuff. You should try to keep a current
+  copy of it in DropBox
+
+
+* load only works on .mac files
+  batch works on any file
+
+
+* You can edit a file in C:/Users/warwar/maxima/<fileName.mac>
+
+  and then simply issue 
+
+    load("fileName.mac");
+
+
+* Here a 2nd order sigma delta
+
+  eq1 : ((x-y) * (z / (1-z)) - 2 * y) * (z / (1-z)) = y;
+
+  ans : solve([eq1], [y]);
+
+
+    or
+
+
+  eq1 : ((x-R*y) * (z / (1-z)) - 2*R*y) * (z / (1-z)) = y;
+  ans : solve([eq1], [y]);
+  best : ans, R=1;
+
+
+
+* Comments between /*    */
+
+* Files :
+
+  appendfile
+  batch
+  batchload
+  closefile
+  file_output_append
+  filename_merge
+  file_search file_search_maxima
+  file_search_lisp
+  file_search_demo
+  file_search_usage
+  file_search_tests
+  file_type
+  file_type_lisp
+  file_type_maxima
+  load load_pathname
+  loadfile
+  loadprint
+  pathname_directory
+  pathname_name
+  pathname_type
+  printfile save
+  stringout
+  with_stdout
+  writefil
+
+* To get help on something :
+
+    ? stringout;
+
+  or
+
+    ?? stringout;
+
+ 
+
+-----------------------------------
+(give the numeric value of something)
+
+  %, numer;
+
+or 
+
+  % bfloat (%);
+
+fpprec;
+
+fpprec : 100;
+
+expand (%);
+
+%o2, x=5/z;
+
+ratsimp (%);
+
+factor (%);
+
+solve([%o6, %o7, %o8], [a, b, c]);
+
+trigexpand (%);
+
+trigreduce (%);
+
+
+* special constants
+
+  %i --> sqrt(-1)
+  %e --> natural log base
+  %pi --> pi
+
+
+realpart(%);
+imagpart(%);
+
+f : 1/x^3 + sin(x)*exp(-x);
+
+diff (f, x);
+integrate (f, x);
+integrate (f, x, 1, inf);
+
+
+
+
+
+pngStr0 : "png size 800,600 font 'C:\\Windows\\Fonts\\ShelbysFont.ttf' 12";
+
+pngStr1 : "png size 800,600 font 'C:\\Windows\\Fonts\\comic.ttf' 16";
+
+
+-------------------------------------------------------------------------
+* 05/31/2013 - gcw
+-------------------------------------------------------------------------
+
+C:\Users\warwar>type maxima\myinit.mac
+
+pngStr0 : "png size 800,600 font 'C:\\Windows\\Fonts\\ShelbysFont.ttf' 12";
+
+pngStr1 : "png size 800,600 font 'C:\\Windows\\Fonts\\comic.ttf' 16";
+
+maxima_tempdir : "C:\\Users\\warwar\\Desktop\\Open";
+
+
+
+* on the pc
+
+  maxima_userdir is by default set to "C:\\Users\\warwar\\maxima"
+
+    (note the use of double \)
+
+  maxima_tempdir is by default set to "C:\\Users\\warwar"
+
+
+  I define the above two strings and the command to change maxima_tempdir
+  in the file shown above. Since this file is in maxima_userdir, I can
+  simply type the command
+
+    load("myinit.mac");
+
+  when I start up maxima, and then my output files will be written into
+  my shared directory "Open", so it's easy to get to them from linux.
+
+
+  I can then plot a png file with the command :
+
+    plot2d(sin(x), [x, 0 6.28], [gnuplot_term, pngStr0]);
+
+  and it will creat a maxplot.png file in Open
+
+--------------------------------------------------
+
+
+
+gnstr : "png size 800,600 font '/Library/Fonts/ShelbysFont.ttf' 12";
+
+plot2d(cos(x), [x, 0, 12], [gnuplot_term, gnstr])$
+
+shstr : "pdf font '/Library/Fonts/ShelbysFont.ttf' 16";
+
+plot2d(cos(x), [x, 0, 12], [gnuplot_term, shstr])$
+
+

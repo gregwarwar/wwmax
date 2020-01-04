@@ -1,0 +1,26 @@
+/*
+  Solution B
+
+   I want to now use a 12mm detector (rather than 8)
+
+   I am willing to move my detector from 1cm to 1.5cm from the lens
+
+   I want the magnification for a 10m object to increase from 8mm/16m to 12mm/16m
+
+   I now solve the equation for the focal length of the lens I need
+
+*/
+
+eq1 : 1/d + 1/D = 1/f;
+
+eq2 : d = 0.015;
+
+eq3 : D = 10.0;
+
+eq4 : M = 12e-3/16;
+
+
+
+ans : solve([eq1, eq2, eq3, eq4], [d, D, M, f]);
+
+

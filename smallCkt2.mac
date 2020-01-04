@@ -1,0 +1,26 @@
+
+
+
+ViM : (Vi0+Vi1)/2;
+
+VaM : (Va0+Va1)/2;
+
+VoM : (Vo0+Vo1)/2;
+
+eq1 : (VaM-ViM)/R1 + C1*(Va1-Va0)/h + (VaM-VoM)/R2 = 0;
+
+eq2 : (VoM-VaM)/R1 + C2*(Vo1-Vo0)/h = 0;
+
+ans : solve([eq1, eq2], [Va1, Vo1]);
+
+EQ1 : fortran(ratsimp((ans[1][1])));
+
+EQ2 : fortran(ratsimp((ans[1][2])));
+
+
+
+
+Va1 = ((R2*Vi1+R2*Vi0-R2*Va0)*h^2+(4*C2*R1^2*Vo0+2*C2*R1*R2*Vi1 + 2*C2*R1*R2*Vi0+((2*C1-2*C2)*R1*R2-2*C2*R1^2)*Va0)*h+4*C1*C2*R1^2*R2*Va0)/(R2*h^2+((2*C2+2*C1)*R1*R2+2*C2*R1^2)*h+4*C1*C2*R1^2*R2);
+
+
+Vo1 = -((R2*Vo0-R2*Vi1-R2*Vi0)*h^2+(((2*C1-2*C2)*R1*R2-2*C2*R1^2)*Vo0-4*C1*R1*R2*Va0)*h-4*C1*C2*R1^2*R2*Vo0)/(R2*h^2+((2*C2+2*C1)*R1*R2+2*C2*R1^2)*h+4*C1*C2*R1^2*R2)

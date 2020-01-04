@@ -1,0 +1,39 @@
+
+
+eq1 : ((x-y) * (z / (1-z)) - 2 * y) * (z / (1-z)) + n = y;
+
+
+ans : solve([eq1], [y]);
+
+solN : ans, x=0;
+
+solX : ans, n=0;
+
+
+factorsum(solN);
+
+eout : ratsimp(ans, x, n);
+
+
+nfunc : subst([x=0,n=1], ans);
+
+noiseF : subst([z=e^(s*T), s=(%i*2*%pi*f)], nfunc);
+
+HF(f) := ''(rhs(noiseF[1]));
+
+
+f(z) := ''(rhs(eout[1]));
+
+h(x) := ''(
+
+
+/*
+plot2d([LE(x), LJ(x), LA(x), LB(x), LC(x)],
+[x, 10e3, 100e6], [logx],
+[legend, "1/f", "3-pole approx", "100k", "1M", "10M"],
+[xlabel, "Frequency"], [ylabel, "L(f)"]);
+*/
+
+/*
+plot2d([sin(x),cos(x)], [x, 0, 2*%pi], [legend, "sinusoid", "cosusoid"], [xlabel, "X-VALUE"], [ylabel, "Y-VALUE"]);
+*/

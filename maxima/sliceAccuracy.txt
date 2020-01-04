@@ -1,0 +1,27 @@
+eq1 : ((vo-vddo)/Rc)*ncu + (vo/Rc)*ncd + ((vo-vddo)/Rm)*nmu + (vo/Rm)*nmd + (vo-v1)/Rs = 0;
+
+eq2 : ((v1-vddo)/Rm)*nfu + (v1/Rm)*nfd + (v1-vo)/Rs = 0;
+
+ans : solve([eq1, eq2], [vo, v1]);
+
+a2 : ratsimp(ans[1][2]);
+
+a1 : ratsimp(ans[1][1]);
+
+vout1 : rhs(a1);
+
+vout2 : subst([nfd=nf-nfu, nmd=nm-nmu, ncd=nc-ncu], vout1);
+
+
+
+
+                                                                                 2
+                          ((Rc Rs nf + Rc Rm) nmu + Rc Rm nfu + Rm Rs ncu nf + Rm  ncu) vddo
+(%o11)                    ------------------------------------------------------------------
+                                                                                  2
+                                (Rc Rs nf + Rc Rm) nm + (Rm Rs nc + Rc Rm) nf + Rm  nc
+
+
+
+
+

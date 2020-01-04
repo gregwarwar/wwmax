@@ -1,0 +1,31 @@
+#!/bin/csh -f
+
+set ofile=`basename $1 .txt`.out
+
+# sed -e 's/T^3/T*T*T/g' -e 's/T^2/T*T/g' -e 's/;/;\n\n\n/g' -e 's/\//\n\n \/   /g' $1 > $ofile
+
+sed \
+  -e 's/w^4/w*w^3/g' \
+  -e 's/w^3/w*w^2/g' \
+  -e 's/w^2/w*w/g' \
+  -e 's/w/$w/g' \
+  -e 's/kv/$kv/g' \
+  -e 's/kc/$kc/g' \
+  -e 's/Ao/$Ao/g' \
+  -e 's/Az/$Az/g' \
+  -e 's/I/$Io/g' \
+  -e 's/C1/$C1/g' \
+  -e 's/C2/$C2/g' \
+  -e 's/C3/$C3/g' \
+  -e 's/R2/$R2/g' \
+  -e 's/R3/$R3/g' \
+  -e 's/Nx^2/Nx*Nx/g' \
+  -e 's/Ny^2/Ny*Ny/g' \
+  -e 's/Dx^2/Dx*Dx/g' \
+  -e 's/Dy^2/Dy*Dy/g' \
+  -e 's/N/$N/g' \
+  -e 's/D/$D/g' \
+$1 > $ofile
+
+unset ofile
+

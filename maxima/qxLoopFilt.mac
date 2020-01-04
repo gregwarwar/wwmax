@@ -1,0 +1,16 @@
+
+eq1 : -Ic + C1 * (v1 - v1o) / T + (v1 + v1o - v2 - v2o) / (2 * R) = 0;
+
+eq2 : (v2 + v2o - v1 - v1o) / (2 * R) + C2 * (v2 - v2o) / T = 0;
+
+ans : solve([eq1, eq2], [v1, v2]);
+
+a2 : ratsimp(ans[1][2]);
+a1 : ratsimp(ans[1][1]);
+
+
+stringout("/Users/warwar/Desktop/Open/qxLoopFilt.txt", a1, a2);
+
+
+
+

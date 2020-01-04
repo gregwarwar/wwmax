@@ -1,0 +1,36 @@
+load(draw);
+
+/* dimensions are hundredths of a cm */
+/* therefore multiply 254u/inch */
+
+draw3d(title = "Greg shan4d png",
+  font = "Times New Roman",
+  font_size = 10,
+  dimensions = [1270,1016],
+  color = red,
+  label(["End Here", 0, 1, 1], ["Start Here", 0, 1, -1]),
+  terminal = pdfcairo,
+  file_name = "C:/users/warwargr/Desktop/Open/crap",
+  xu_grid = 10,
+  yv_grid = 10,
+  nticks = 500,
+  view = [60,30], xlabel="x", ylabel="y", zlabel="z",
+  xrange = [-1.5, 1.5], yrange = [-1.5, 1.5], zrange = [-1.5, 1.5],
+  surface_hide = false,
+  color = blue,
+  parametric_surface(
+    0.1*cos(u)*sin(v),
+    0.1*sin(u)*sin(v),
+    0.1*cos(v),
+    u, 0, 2*%pi, v, -%pi, %pi
+  ),
+  color = green,
+  parametric(
+    sin(u),
+    cos(u),
+    (u-5*%pi)/(5*%pi),
+    u, 0, 10*%pi
+  )
+);
+
+

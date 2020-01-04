@@ -1,0 +1,36 @@
+eq1 : ((x-y) * (z / (1-z)) - 2 * y) * (z / (1-z)) + n = y;
+
+
+ansVec : solve([eq1], [y]);
+
+ans : rhs(ansVec[1]);
+
+solN : ans, x=0;
+
+solX : ans, n=0;
+
+solNf : factorsum(solN);
+
+solXf : factorsum(solX);
+
+eout : ratsimp(ans, x, n);
+
+
+xgain : subst([x=1,n=0], eout);
+
+ngain : subst([x=0,n=1], eout);
+
+n(f) := ''(subst([z=z^(-1), z=%e^(s*T), s=%i*2*%pi*f], ngain));
+
+n2(f) := n(f) * n(-f);
+
+n2r(f) := trigreduce(realpart(n2(f)));
+
+noise2(f) := ''(subst([T=1.0e-9], n2r(f)));
+
+glog10(x) := log(x) / log(10);
+
+noi2_dB(f) := 10 * glog10(noise2(f));
+
+
+plot2d(noi2_dB(f), [f, 100, 500e6], [logx]);
